@@ -10,7 +10,6 @@ dog-adoption-website/
 ├── backend/                // C++ files
 │   ├── main.cpp            // Main page
 │   ├── aboutus.cpp            // about us page
-│   ├── login.cpp           //  login
 │   └── user_profile.cpp     //user profile 
 │
 └── Makefile                // Make file for building C++ code
