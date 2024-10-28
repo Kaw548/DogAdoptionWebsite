@@ -2,7 +2,6 @@ dog-adoption-website/
 │
 ├── frontend/               // HTML files
 │   ├── index.html
-│   ├── login.html
 │   ├── profile.html
 │   ├── adopt.html
 │   └── images/
@@ -11,5 +10,5 @@ dog-adoption-website/
 │   ├── main.cpp            // Main page
 │   ├── aboutus.cpp            // about us page
 │   └── user_profile.cpp     //user profile 
-│
+│   ├── adopt.html
 └── Makefile                // Make file for building C++ code
