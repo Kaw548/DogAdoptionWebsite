@@ -1,3 +1,4 @@
+/* General Styles (unchanged from previous) */
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +16,18 @@ header {
     color: white;
     text-align: center;
     padding: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+header nav a:hover {
+    background-color: #555;
 }
 
 h1 {
@@ -52,6 +65,27 @@ main {
 
 .animal-card p {
     font-size: 16px;
+    margin: 10px 0;
+}
+
+.animal-profile {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.animal-profile h2 {
+    font-size: 32px;
+    color: #4CAF50;
+}
+
+.animal-profile p {
+    font-size: 18px;
     margin: 10px 0;
 }
 
