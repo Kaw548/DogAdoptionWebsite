@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMatch - Available Pets</title>
+</head>
+<body>
+    <h1>Welcome to PawMatch!</h1>
+    <h2>Find your perfect companion</h2>
+    <div id="animal-list"></div>
+
+    <script>
+        // Replace this URL with your actual Render URL once the backend is deployed
+        fetch("https://your-backend-url.onrender.com/api/animals")
+            .then(response => response.json())
+            .then(data => {
+                const animalList = document.getElementById("animal-list");
+                data.forEach(animal => {
+                    const animalDiv = document.createElement("div");
+                    animalDiv.innerHTML = `
+                        <h3>Name: ${animal.name}</h3>
+                        <p>Breed: ${animal.breed}</p>
+                        <p>Distance: ${animal.distance} miles</p>
+                        <hr>
+                    `;
+                    animalList.appendChild(animalDiv);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script>
+</body>
+</html>
