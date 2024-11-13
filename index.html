@@ -3,71 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch - Animal Adoption</title>
+    <title>PawMatch - Upload a Dog for Adoption</title>
     <link rel="stylesheet" href="websitestyle.css">
 </head>
 <body>
-    <h1>PawMatch - Animal Adoption</h1>
-    <div class="animal-grid">
-        <div class="animal-profile">
-            <a href="buddy.html">
-                <img src="images/buddy.jpg" alt="Buddy">
-                <h2>Buddy</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 5 miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="max.html">
-                <img src="images/max.jpg" alt="Max">
-                <h2>Max</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 25 miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="bella.html">
-                <img src="images/bella.jpg" alt="Bella">
-                <h2>Bella</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 100+ miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="charlie.html">
-                <img src="images/charlie.jpg" alt="Charlie">
-                <h2>Charlie</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 0.5 miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="teddy.html">
-                <img src="images/teddy.jpg" alt="Teddy">
-                <h2>Teddy</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 0.5 miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="fiona.html">
-                <img src="images/fiona.jpg" alt="Fiona">
-                <h2>Fiona</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 50 miles away</p>
-        </div>
-        <div class="animal-profile">
-            <a href="pinto.html">
-                <img src="images/pinto.jpg" alt="Pinto">
-                <h2>Pinto</h2>
-            </a>
-            <p>Animal: Dog</p>
-            <p>Location: 10 miles away</p>
-        </div>
-    </div>
-    <footer>
-        <p>© 2024 PawMatch. All Rights Reserved.</p>
-    </footer>
+    <h1>Upload a Dog for Adoption</h1>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <label for="dog-name">Dog's Name:</label>
+        <input type="text" id="dog-name" name="dog-name" required><br>
+
+        <label for="dog-breed">Breed:</label>
+        <input type="text" id="dog-breed" name="dog-breed" required><br>
+
+        <label for="dog-age">Age:</label>
+        <input type="number" id="dog-age" name="dog-age" required><br>
+
+        <label for="dog-location">Location:</label>
+        <input type="text" id="dog-location" name="dog-location" required><br>
+
+        <label for="dog-photo">Upload Photo:</label>
+        <input type="file" id="dog-photo" name="dog-photo" accept="image/*" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+    <a href="index.html">Back to All Profiles</a>
 </body>
 </html>
