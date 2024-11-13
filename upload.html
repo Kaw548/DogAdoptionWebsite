@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMatch - Upload a Dog for Adoption</title>
+    <link rel="stylesheet" href="websitestyle.css">
+</head>
+<body>
+    <h1>Upload a Dog for Adoption</h1>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <label for="dog-name">Dog's Name:</label>
+        <input type="text" id="dog-name" name="dog-name" required><br>
+
+        <label for="dog-breed">Breed:</label>
+        <input type="text" id="dog-breed" name="dog-breed" required><br>
+
+        <label for="dog-age">Age:</label>
+        <input type="number" id="dog-age" name="dog-age" required><br>
+
+        <label for="dog-location">Location:</label>
+        <input type="text" id="dog-location" name="dog-location" required><br>
+
+        <label for="dog-photo">Upload Photo:</label>
+        <input type="file" id="dog-photo" name="dog-photo" accept="image/*" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+    <a href="index.html">Back to All Profiles</a>
+</body>
+</html>
