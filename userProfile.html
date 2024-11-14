@@ -3,67 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch</title>
+    <title>PawMatch - User Profile</title>
     <link rel="stylesheet" href="websitestyle.css">
 </head>
 <body>
-    <!-- Clickable Heading for PawMatch -->
-    <h1>
-        <a href="index.html" class="home-link">PawMatch</a>
-    </h1>
-    
- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch </title>
-    <link rel="stylesheet" href="websitestyle.css">
-</head>
-    
-<body>
-    <h1>User Profile</h1>
-    
-    <!-- Saved Animals Section -->
-    <section id="saved-animals">
-        <h2>Saved Animals</h2>
-        <div class="saved-animal">
-            <img src="images/buddy.jpg" alt="Buddy">
-            <h3>Buddy</h3>
-            <p>Golden Retriever - 5 miles away</p>
+    <!-- Header Section -->
+    <header class="header">
+        <!-- PawMatch Link (Top Center) -->
+        <div class="header-center">
+            <h1>
+                <a href="about.html" class="about-link">PawMatch</a>
+            </h1>
         </div>
-        <div class="saved-animal">
-            <img src="images/max.jpg" alt="Max">
-            <h3>Max</h3>
-            <p>Labrador - 25 miles away</p>
+
+        <!-- Global Icon and Profile Icon (Top Right) -->
+        <div class="header-right">
+            <a href="index.html" class="global-link">
+                <img src="global.jpg" alt="Home" class="global-icon">
+            </a>
+            <a href="userProfile.html">
+                <img src="userprofileicon.jpg" alt="Your Profile" class="profile-icon">
+            </a>
         </div>
-        <!-- Additional saved animals go here -->
-    </section>
-    
-    <!-- Post a New Animal Section -->
-    <section id="post-animal">
-        <h2>Post a New Animal for Adoption</h2>
-        <form action="#" method="POST" enctype="multipart/form-data">
-            <label for="animal-name">Animal's Name:</label>
-            <input type="text" id="animal-name" name="animal-name" required><br>
+    </header>
 
-            <label for="animal-type">Animal Type (Dog or Cat):</label>
-            <input type="text" id="animal-type" name="animal-type" required><br>
+    <!-- User Profile Section -->
+    <main class="user-profile-container">
+        <h1>User Profile</h1>
 
-            <label for="animal-breed">Breed:</label>
-            <input type="text" id="animal-breed" name="animal-breed" required><br>
+        <!-- Saved Animals Section -->
+        <section id="saved-animals">
+            <h2>Saved Animals</h2>
+            <div class="saved-animals-grid">
+                <div class="saved-animal-card">
+                    <img src="images/buddy.jpg" alt="Buddy" class="saved-animal-image">
+                    <h3>Buddy</h3>
+                    <p>Golden Retriever - 5 miles away</p>
+                </div>
+                <div class="saved-animal-card">
+                    <img src="images/max.jpg" alt="Max" class="saved-animal-image">
+                    <h3>Max</h3>
+                    <p>Labrador - 25 miles away</p>
+                </div>
+                <!-- Additional saved animals go here -->
+            </div>
+        </section>
 
-            <label for="animal-age">Age:</label>
-            <input type="number" id="animal-age" name="animal-age" required><br>
+        <!-- Post a New Animal Section -->
+        <section id="post-animal">
+            <h2>Post a New Animal for Adoption</h2>
+            <form action="#" method="POST" enctype="multipart/form-data" class="post-animal-form">
+                <label for="animal-name">Animal's Name:</label>
+                <input type="text" id="animal-name" name="animal-name" required>
 
-            <label for="animal-location">Location:</label>
-            <input type="text" id="animal-location" name="animal-location" required><br>
+                <label for="animal-type">Animal Type (Dog or Cat):</label>
+                <input type="text" id="animal-type" name="animal-type" required>
 
-            <label for="animal-photo">Upload Photo:</label>
-            <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required><br>
+                <label for="animal-breed">Breed:</label>
+                <input type="text" id="animal-breed" name="animal-breed" required>
 
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+                <label for="animal-age">Age:</label>
+                <input type="number" id="animal-age" name="animal-age" required>
 
-    <br>
-    <a href="index.html">Back to All Profiles</a>
+                <label for="animal-location">Location:</label>
+                <input type="text" id="animal-location" name="animal-location" required>
+
+                <label for="animal-photo">Upload Photo:</label>
+                <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required>
+
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </section>
+
+        <a href="index.html" class="back-link">Back to All Profiles</a>
+    </main>
 </body>
 </html>
