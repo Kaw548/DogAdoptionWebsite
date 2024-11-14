@@ -74,6 +74,15 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+.home-link {
+    text-decoration: none;  /* Removes the underline */
+    color: inherit;         /* Keeps the heading's original color */
+}
+
+.home-link:hover {
+    color: #007bff;         /* Optional: Change color when hovered */
+}
+
 
 button:hover {
     background-color: #0056b3;
