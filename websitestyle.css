@@ -13,6 +13,23 @@ h1 {
     color: #2c3e50;
 }
 
+/* Styling for User Profile Icon */
+.profile-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-icon {
+    width: 50px;  /* Set the width of the icon */
+    height: auto;
+    cursor: pointer;  /* Show pointer when hovering to indicate it's clickable */
+    transition: transform 0.2s ease-in-out;  /* Add slight hover animation */
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);  /* Slightly increase the size when hovered */
+}
+
 /* Profiles Grid */
 .profiles {
     display: flex;
