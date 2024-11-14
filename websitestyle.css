@@ -19,9 +19,9 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: relative;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .header-center {
@@ -31,10 +31,12 @@ h1 {
 }
 
 .header-right {
+    margin-left: auto;
     display: flex;
     gap: 20px;
 }
 
+/* Styling for Global and Profile Icons */
 .global-icon,
 .profile-icon {
     width: 40px;
@@ -42,14 +44,15 @@ h1 {
     cursor: pointer;
 }
 
+/* Styling for PawMatch Link */
 .about-link {
-    text-decoration: none;
+    text-decoration: none;  /* Removes underline */
     color: inherit;
     font-size: 24px;
 }
 
 .about-link:visited {
-    color: inherit;
+    color: inherit;         /* Prevents link from turning purple */
 }
 
 /* User Profile Styles */
