@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawMatch - Main Page</title>
-    
+    <div id="header-placeholder"></div>
     <!-- Shared styles across all pages -->
     <link rel="stylesheet" href="globalstyle.css">
     
@@ -89,7 +89,16 @@
             </div>
         </div>
     </main>
-       
+       <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    });
+
         function saveAnimal(animalName) {
             alert(animalName + " has been saved to your profile!");
         }
