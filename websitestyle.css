@@ -49,10 +49,11 @@ h1 {
     background-color: #ffffff;
 }
 
-.profile img {
+/* Consistent Styling for Profile Images */
+.profile-image {
     width: 100%;
     height: 200px;  /* Set a fixed height for consistency */
-    object-fit: cover;  /* This property ensures the image fits nicely without stretching */
+    object-fit: cover;  /* Ensures the image fits well without distortion */
     border-radius: 5px;
 }
 
