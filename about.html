@@ -12,6 +12,8 @@
         <!-- PawMatch Link to Stay on About Page (Centered) -->
         <div class="header-center">
             <h1>
+                <!-- Placeholder to include the header -->
+                <div id="header-placeholder"></div>
                 <a href="about.html" class="about-link">PawMatch</a>
             </h1>
         </div>
@@ -46,4 +48,14 @@
 
     <br>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    });
+</script>
 </html>
