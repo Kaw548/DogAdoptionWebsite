@@ -1,80 +1,99 @@
-/* Profile Container for Buddy */
-.profile-container {
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Header Section Styles */
+.header {
     display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.global-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Styling for PawMatch link */
+.about-link {
+    text-decoration: none;  /* Removes the underline */
+    color: inherit;         /* Keeps the heading's original color */
+    font-size: 24px;
+}
+
+.about-link:visited {
+    color: inherit;         /* Prevents the link from turning purple after clicking */
+}
+
+/* Styling for User Profile Icon */
+.profile-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-icon {
+    width: 50px;  /* Set the width of the icon */
+    height: auto;
+    cursor: pointer;  /* Show pointer when hovering to indicate it's clickable */
+    transition: transform 0.2s ease-in-out;  /* Add slight hover animation */
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);  /* Slightly increase the size when hovered */
+}
+
+/* Profiles Grid */
+.profiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* Center the profiles horizontally */
+    gap: 20px;  /* Space between profiles */
     padding: 20px;
 }
 
-.profile-details {
-    flex: 2;  /* Allows this part to take up more space */
-}
-
-.profile-image {
-    flex: 1;  /* Allows image to take up less space */
-    text-align: right;
-}
-
-.buddy-image {
-    width: 300px;  /* Set a fixed width for Buddy's image */
-    height: auto;  /* Maintain aspect ratio */
+.profile {
+    text-align: center;  /* Center content inside each profile */
+    width: 250px;
+    border: 1px solid #ddd;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-/* Styling for the Adopt Me Button */
-.adopt-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
+/* Consistent Styling for Profile Images */
+.profile-image {
+    width: 100%;
+    height: 200px;  /* Set a fixed height for consistency */
+    object-fit: cover;  /* Ensures the image fits well without distortion */
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
 }
 
-.adopt-button:hover {
-    background-color: #218838;
-}
-
-/* Adopt Section Styling */
-#adopt-section {
-    margin-top: 40px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-#adopt-section h2 {
-    color: #2c3e50;
-}
-
-#adopt-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#adopt-section input,
-#adopt-section textarea {
+footer {
+    text-align: center;
+    margin-top: 20px;
     padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: #333;
+    color: white;
 }
 
-.submit-button {
-    padding: 10px 20px;
+button {
+    padding: 10px;
+    margin-top: 10px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-.submit-button:hover {
+button:hover {
     background-color: #0056b3;
 }
