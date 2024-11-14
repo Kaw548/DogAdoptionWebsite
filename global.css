@@ -52,3 +52,14 @@ form textarea {
 .submit-button:hover {
     background-color: #0056b3;
 }
+.header .global-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+.header .profile-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
