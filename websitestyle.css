@@ -7,6 +7,12 @@ body {
     background-color: #f4f4f9;
 }
 
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: #2c3e50;
+}
+
 /* Header Section Styles */
 .header {
     display: flex;
@@ -14,6 +20,8 @@ body {
     align-items: center;
     padding: 10px 20px;
     position: relative;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-center {
@@ -27,7 +35,6 @@ body {
     gap: 20px;
 }
 
-/* Styling for Global and Profile Icons */
 .global-icon,
 .profile-icon {
     width: 40px;
@@ -35,62 +42,107 @@ body {
     cursor: pointer;
 }
 
-.profile-icon {
-    transition: transform 0.2s ease-in-out;
-}
-
-.profile-icon:hover {
-    transform: scale(1.1);
-}
-
-/* Styling for PawMatch Link */
 .about-link {
-    text-decoration: none;  /* Removes underline */
-    color: inherit;         /* Keeps original heading color */
+    text-decoration: none;
+    color: inherit;
     font-size: 24px;
 }
 
 .about-link:visited {
-    color: inherit;         /* Prevents the link from turning purple after clicking */
+    color: inherit;
 }
 
-/* Profiles Grid */
-.profiles {
+/* User Profile Styles */
+.user-profile-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Saved Animals Section */
+#saved-animals {
+    margin-bottom: 30px;
+}
+
+.saved-animals-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;  /* Center the profiles horizontally */
-    gap: 20px;  /* Space between profiles */
-    padding: 20px;
+    gap: 20px;
+    justify-content: space-around;
 }
 
-.profile {
-    text-align: center;  /* Center content inside each profile */
-    width: 250px;
+.saved-animal-card {
+    background-color: #fff;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 8px;
+    text-align: center;
+    width: 180px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
 }
 
-/* Consistent Styling for Profile Images */
-.profile-image {
+.saved-animal-image {
     width: 100%;
-    height: 200px;  /* Set a fixed height for consistency */
-    object-fit: cover;  /* Ensures the image fits well without distortion */
+    height: 120px;
+    object-fit: cover;
     border-radius: 5px;
 }
 
-button {
+/* Post Animal Form */
+#post-animal {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.post-animal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-animal-form input,
+.post-animal-form label {
+    font-size: 14px;
+}
+
+.post-animal-form input {
     padding: 10px;
-    margin-top: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
 }
 
-button:hover {
+.submit-button:hover {
     background-color: #0056b3;
+}
+
+/* Back to All Profiles Link */
+.back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
 }
