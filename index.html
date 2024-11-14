@@ -85,7 +85,16 @@
         </div>
     </main>
 
-    <script>
+       <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+
         // Placeholder function to save an animal
         function saveAnimal(animalName) {
             alert(animalName + " has been saved to your profile!");
@@ -93,3 +102,4 @@
     </script>
 </body>
 </html>
+
