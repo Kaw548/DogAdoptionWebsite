@@ -95,6 +95,73 @@ h1 {
     border-radius: 5px;
 }
 
+/* Pet Profiles Container */
+.pet-profiles-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profiles Grid */
+.profiles-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+/* Individual Profile Card */
+.profile-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 220px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+ /* Individual Profile Card */
+.profile-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;  /* Adjusted width for smaller profile cards */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Image Styling */
+.profile-image {
+    width: 100%;
+    max-width: 150px;  /* Ensures the image doesn't grow too large */
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;  /* Adds some spacing between the image and the text below */
+}
+
+
+/* Save Button Styling */
+.save-button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
 /* Post Animal Form */
 #post-animal {
     margin-top: 20px;
@@ -149,111 +216,4 @@ h1 {
 
 .back-link:hover {
     text-decoration: underline;
-}
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
-
-h1 {
-    text-align: center;
-    margin: 20px;
-    color: #2c3e50;
-}
-
-/* Header Section Styles */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.header-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.header-right {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
-}
-
-/* Styling for Global and Profile Icons */
-.global-icon,
-.profile-icon {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-}
-
-/* Styling for PawMatch Link */
-.about-link {
-    text-decoration: none;  /* Removes underline */
-    color: inherit;
-    font-size: 24px;
-}
-
-.about-link:visited {
-    color: inherit;         /* Prevents link from turning purple */
-}
-
-/* Pet Profiles Container */
-.pet-profiles-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Profiles Grid */
-.profiles-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-}
-
-/* Individual Profile Card */
-.profile-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    width: 220px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.profile-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-/* Save Button Styling */
-.save-button {
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.save-button:hover {
-    background-color: #218838;
 }
