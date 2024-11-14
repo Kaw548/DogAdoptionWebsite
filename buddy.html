@@ -1,23 +1,45 @@
-<!-- buddy.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch</title>
+    <title>PawMatch - Buddy's Profile</title>
     <link rel="stylesheet" href="websitestyle.css">
 </head>
 <body>
-    <!-- Clickable Heading for PawMatch -->
-    <h1>
-        <a href="index.html" class="home-link">PawMatch</a>
-    </h1>
-<body>
-    <h1>Buddy</h1>
-    <p><strong>Breed:</strong> Golden Retriever</p>
-    <p><strong>Location:</strong> 5 miles away</p>
-     <img src="buddy.jpg" alt="Buddy">
-    <p><strong>About Buddy:</strong> Buddy is a loyal and friendly Golden Retriever who loves playing fetch and going on long walks. He’s looking for a loving home!</p>
-    <a href="index.html">Back to All Profiles</a>
+    <div class="profile-container">
+        <div class="profile-details">
+            <h1>Buddy</h1>
+            <p><strong>Animal:</strong> Dog</p>
+            <p><strong>Breed:</strong> Golden Retriever</p>
+            <p><strong>Location:</strong> 5 miles away</p>
+            <p><strong>About Buddy:</strong> Buddy is a loyal and friendly Golden Retriever who loves playing fetch and going on long walks. He’s looking for a loving home!</p>
+            <button class="adopt-button" onclick="document.getElementById('adopt-section').scrollIntoView({behavior: 'smooth'});">Adopt Me!</button>
+        </div>
+        <div class="profile-image">
+            <img src="buddy.jpg" alt="Buddy" class="buddy-image">
+        </div>
+    </div>
+
+    <!-- Adopt Section -->
+    <div id="adopt-section" class="adopt-section">
+        <h2>Adoption Form</h2>
+        <form>
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="message">Why do you want to adopt Buddy?</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit" class="submit-button">Submit Application</button>
+        </form>
+    </div>
+
 </body>
 </html>
