@@ -4,21 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About PawMatch</title>
+
+    <!-- Link to Shared Styles -->
+    <link rel="stylesheet" href="globalstyle.css">
+
+    <!-- Link to Specific Styles for the About Page -->
     <link rel="stylesheet" href="about.css">
 </head>
 <body>
-    <!-- Header Section with PawMatch, Global Icon, and Profile Icon -->
-    <header class="header">
-        <!-- PawMatch Link to Stay on About Page (Centered) -->
-        <div class="header-center">
-            <h1>
-                <!-- Placeholder to include the header -->
-                <div id="header-placeholder"></div>
-                 <link rel="stylesheet" href="globalstyle.css">
-                <a href="about.html" class="about-link">PawMatch</a>
-            </h1>
-        </div>
-    </header>
+    <!-- Header Placeholder to Include the Header -->
+    <div id="header-placeholder"></div>
 
     <!-- About Us Section -->
     <section class="about-us">
@@ -38,15 +33,17 @@
     </section>
 
     <br>
+
+    <!-- JavaScript to Include Header -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header:', error));
-    });
-</script>
 </html>
