@@ -13,26 +13,6 @@ h1 {
     color: #2c3e50;
 }
 
-/* Styling for PawMatch link */
-.home-link {
-    text-decoration: none;  /* Removes the underline */
-    color: inherit;         /* Keeps the heading's original color */
-}
-
-.home-link:visited {
-    color: inherit;         /* Prevents the link from turning purple after clicking */
-}
-
-/* Styling for Animal Profile Links */
-.animal-link {
-    text-decoration: none;  /* Removes underline */
-    color: inherit;         /* Keeps original heading color */
-}
-
-.animal-link:visited {
-    color: inherit;         /* Prevents the link from turning purple after visiting */
-}
-
 /* Styling for User Profile Icon */
 .profile-link {
     text-align: center;
