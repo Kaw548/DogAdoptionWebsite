@@ -51,7 +51,8 @@ h1 {
 
 .profile img {
     width: 100%;
-    height: auto;
+    height: 200px;  /* Set a fixed height for consistency */
+    object-fit: cover;  /* This property ensures the image fits nicely without stretching */
     border-radius: 5px;
 }
 
