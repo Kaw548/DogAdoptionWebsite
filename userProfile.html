@@ -77,23 +77,40 @@
         </section>
     </main>
 </body>
-    <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Add event listener to the remove buttons
-        document.querySelectorAll(".remove-animal-button").forEach(button => {
-            button.addEventListener("click", function () {
-                // Get the parent card element
-                const animalCard = this.closest(".saved-animal-card");
-                
-                // Confirm removal with the user
-                const animalName = animalCard.querySelector("h3").textContent;
-                if (confirm(`Are you sure you want to remove ${animalName}?`)) {
-                    // Remove the animal card
-                    animalCard.remove();
-                }
+        // Load saved animals from localStorage
+        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
+        const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
+
+        // Clear existing content
+        savedAnimalsGrid.innerHTML = '';
+
+        // Populate saved animals
+        savedAnimals.forEach(animal => {
+            const card = document.createElement('div');
+            card.classList.add('saved-animal-card');
+            card.innerHTML = `
+                <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
+                <h3>${animal.name}</h3>
+                <p>${animal.distance}</p>
+                <button class="remove-animal-button">Remove</button>
+            `;
+            card.querySelector('.remove-animal-button').addEventListener('click', function () {
+                removeAnimal(animal.name);
+                card.remove();
             });
+            savedAnimalsGrid.appendChild(card);
         });
     });
+
+    function removeAnimal(animalName) {
+        // Update localStorage
+        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
+        const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
+        localStorage.setItem('savedAnimals', JSON.stringify(updatedAnimals));
+    }
 </script>
+
 
 </html>
