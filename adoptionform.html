@@ -1,14 +1,20 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch - Adoption Form</title>
+    <title>PawMatch - Adoption form</title>
+    
+    <!-- Link to Shared Styles -->
     <link rel="stylesheet" href="globalstyle.css">
+
+    <!-- Link to Page-Specific Styles -->
     <link rel="stylesheet" href="adoptionform.css">
 </head>
 <body>
+    <!-- Header Placeholder to Include the Header -->
     <div id="header-placeholder"></div>
+
+    <!-- JavaScript to Include Header -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetch('header.html')
@@ -19,23 +25,26 @@
                 .catch(error => console.error('Error loading header:', error));
         });
     </script>
+
+    <!-- Adopt Section -->
     <div id="adopt-section" class="adopt-section">
         <h2>Adoption Form</h2>
         <form>
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" required><br><br>
 
-            <label for="message">Why do you want to adopt this pet?</label>
-            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+            <label for="message">Why do you want to adopt this pet?</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
 
             <button type="submit" class="submit-button">Adopt Me!</button>
         </form>
     </div>
+
 </body>
 </html>
