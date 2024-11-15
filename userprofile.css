@@ -124,7 +124,7 @@ h1 {
 
 .submit-button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #9dcfb6;
     color: white;
     border: none;
     border-radius: 5px;
@@ -134,7 +134,7 @@ h1 {
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #9dcfb6;
 }
 
 /* Back to All Profiles Link */
