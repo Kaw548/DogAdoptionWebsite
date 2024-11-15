@@ -25,12 +25,12 @@ function loadAnimalsToPage(containerSelector) {
         const card = document.createElement('div');
         card.classList.add('profile-card');
         card.innerHTML = `
-            <a href="#" class="animal-link">
+            <div class="animal-card" data-animal-name="${animal.name}">
                 <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-                <h2>${animal.name}</h2>
-            </a>
-            <p>${animal.distance}</p>
-            <button onclick="removeAnimal('${animal.name}')" class="save-button">Remove ${animal.name}</button>
+                <h3>${animal.name}</h3>
+                <p>${animal.distance}</p>
+                <button onclick="removeAnimal('${animal.name}')" class="remove-button">Remove ${animal.name}</button>
+            </div>
         `;
         container.appendChild(card);
     });
@@ -65,9 +65,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const breed = document.getElementById('animal-breed').value;
             const age = document.getElementById('animal-age').value;
             const location = document.getElementById('animal-location').value;
-            const photo = document.getElementById('animal-photo').files[0];
+            const photoInput = document.getElementById('animal-photo');
 
-            // Create a URL for the uploaded image (temporary for local preview)
+            if (!photoInput.files.length) {
+                alert("Please select a photo.");
+                return;
+            }
+
+            const photo = photoInput.files[0];
             const imageURL = URL.createObjectURL(photo);
 
             const newAnimal = {
