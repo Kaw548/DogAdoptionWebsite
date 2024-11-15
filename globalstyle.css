@@ -135,3 +135,31 @@ h1 {
         padding: 8px 12px;
     }
 }
+.saved-animals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 800px; /* Constrain grid width */
+    margin: auto; /* Center the grid */
+}
+
+/* Saved Animal Card */
+.saved-animal-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 180px; /* Define consistent card width */
+    overflow: hidden; /* Ensure content doesn’t overflow */
+}
+
+/* Saved Animal Image */
+.saved-animal-image {
+    width: 100%; /* Ensure image width matches card width */
+    height: 120px; /* Set a consistent height */
+    object-fit: cover; /* Crop image to fill area without distortion */
+    border-bottom: 1px solid #ddd; 
+    border-radius: 5px 5px 0 0;
+}
