@@ -25,7 +25,7 @@
                     <h2>Buddy</h2>
                 </a>
                 <p>-5 miles away- </p>
-                <button onclick="saveAnimal('Buddy')" class="save-button">Save Buddy</button>
+                <button onclick="saveAnimal('Buddy', 'buddy.jpg', '-5 miles away-')" class="save-button">Save Buddy</button>
             </div>
 
             <!-- Max's Profile -->
@@ -99,21 +99,25 @@
             .catch(error => console.error('Error loading header:', error));
     });
 
-    function saveAnimal(animalName) {
-        // Get animal details
-        const card = document.querySelector(`.profile-card h2:contains('${animalName}')`).closest('.profile-card');
-        const image = card.querySelector('img').src;
-        const distance = card.querySelector('p').textContent;
-
-        // Save to localStorage
+   function saveAnimal(animalName, animalImage, animalDistance) {
+        // Fetch existing saved animals from localStorage
         const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
-        const newAnimal = { name: animalName, image, distance };
+
+        // Check if the animal is already saved
+        if (savedAnimals.some(animal => animal.name === animalName)) {
+            alert(`${animalName} is already in your saved list!`);
+            return;
+        }
+
+        // Add the new animal
+        const newAnimal = { name: animalName, image: animalImage, distance: animalDistance };
         savedAnimals.push(newAnimal);
 
+        // Update localStorage
         localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
 
-        // Alert the user
-        alert(animalName + " has been saved to your profile!");
+        // Notify the user
+        alert(`${animalName} has been saved to your profile!`);
     }
 </script>
 
