@@ -15,3 +15,18 @@ body {
     max-width: 500px; /* Limits the width of the form */
     width: 100%; /* Ensures it scales on smaller screens */
 }
+.adopt-button {
+    background-color: #9dcfb6; /* Button color */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding for button shape */
+    border: none; /* No border */
+    border-radius: 5px; /* Slightly rounded corners */
+    font-size: 16px; /* Standard font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center the text */
+    display: inline-block; /* Ensures it behaves like a button */
+}
+
+.adopt-button:hover {
+    background-color: #8cbfa7; /* Slightly darker shade on hover */
+}
