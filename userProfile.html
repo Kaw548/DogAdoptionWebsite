@@ -31,22 +31,24 @@
     <main class="user-profile-container">
 
         <!-- Saved Animals Section -->
-        <section id="saved-animals">
-            <h2>Saved Animals</h2>
-            <div class="saved-animals-grid">
-                <div class="saved-animal-card">
-                    <img src="buddy.jpg" alt="Buddy" class="saved-animal-image">
-                    <h3>Buddy</h3>
-                    <p>Golden Retriever - 5 miles away</p>
-                </div>
-                <div class="saved-animal-card">
-                    <img src="max.jpeg" alt="Max" class="saved-animal-image">
-                    <h3>Max</h3>
-                    <p>Labrador - 25 miles away</p>
-                </div>
-                <!-- Additional saved animals go here -->
-            </div>
-        </section>
+       <section id="saved-animals">
+    <h2>Saved Animals</h2>
+    <div class="saved-animals-grid">
+        <div class="saved-animal-card">
+            <img src="buddy.jpg" alt="Buddy" class="saved-animal-image">
+            <h3>Buddy</h3>
+            <p>Golden Retriever - 5 miles away</p>
+            <button class="remove-animal-button" data-animal-id="buddy">Remove</button>
+        </div>
+        <div class="saved-animal-card">
+            <img src="max.jpeg" alt="Max" class="saved-animal-image">
+            <h3>Max</h3>
+            <p>Labrador - 25 miles away</p>
+            <button class="remove-animal-button" data-animal-id="max">Remove</button>
+        </div>
+        <!-- Additional saved animals go here -->
+    </div>
+</section>
 
         <!-- Post a New Animal Section -->
         <section id="post-animal">
@@ -75,4 +77,23 @@
         </section>
     </main>
 </body>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add event listener to the remove buttons
+        document.querySelectorAll(".remove-animal-button").forEach(button => {
+            button.addEventListener("click", function () {
+                // Get the parent card element
+                const animalCard = this.closest(".saved-animal-card");
+                
+                // Confirm removal with the user
+                const animalName = animalCard.querySelector("h3").textContent;
+                if (confirm(`Are you sure you want to remove ${animalName}?`)) {
+                    // Remove the animal card
+                    animalCard.remove();
+                }
+            });
+        });
+    });
+</script>
+
 </html>
