@@ -9,13 +9,23 @@
     <link rel="stylesheet" href="globalstyle.css">
 
     <!-- Link to Specific Styles for the About Page -->
-    <link rel="stylesheet" href="userprofile.css">
+    <link rel="stylesheet" href="about.css">
 </head>
 <body>
     <!-- Header Placeholder to Include the Header -->
     <div id="header-placeholder"></div>
 
-</header>
+    <!-- JavaScript to Include Header -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
 
     <!-- User Profile Section -->
     <main class="user-profile-container">
