@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="globalstyle.css">
     <link rel="stylesheet" href="index.css">
     <!-- Link to the external JavaScript file -->
-     <link rel="stylesheet" href="index.css">
     <script src="scripts.js" defer></script>
 </head>
+    <body>
+    <!-- Header Placeholder to Include the Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- JavaScript to Include Header -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
 <body>
     <!-- Pet Profiles Section -->
     <main class="pet-profiles-container">
@@ -85,16 +99,7 @@
             </div>
         </div>
     </main>
-      <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header:', error));
-    });
-</script>
+  
 
 </body>
 </html>
