@@ -78,39 +78,39 @@
     </main>
 </body>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Load saved animals from localStorage
-        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
-        const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
+    document.querySelector('.post-animal-form').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-        // Clear existing content
-        savedAnimalsGrid.innerHTML = '';
+        const name = document.getElementById('animal-name').value;
+        const type = document.getElementById('animal-type').value;
+        const breed = document.getElementById('animal-breed').value;
+        const age = document.getElementById('animal-age').value;
+        const location = document.getElementById('animal-location').value;
+        const photo = document.getElementById('animal-photo').files[0];
 
-        // Populate saved animals
-        savedAnimals.forEach(animal => {
-            const card = document.createElement('div');
-            card.classList.add('saved-animal-card');
-            card.innerHTML = `
-                <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
-                <h3>${animal.name}</h3>
-                <p>${animal.distance}</p>
-                <button class="remove-animal-button">Remove</button>
-            `;
-            card.querySelector('.remove-animal-button').addEventListener('click', function () {
-                removeAnimal(animal.name);
-                card.remove();
-            });
-            savedAnimalsGrid.appendChild(card);
-        });
+        // Create a URL for the uploaded image (for local preview only)
+        const imageURL = URL.createObjectURL(photo);
+
+        // Store the animal in localStorage
+        const newAnimal = {
+            name,
+            type,
+            breed,
+            age,
+            location,
+            image: imageURL,
+            distance: `${Math.floor(Math.random() * 50)} miles away`,
+        };
+
+        const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+        animals.push(newAnimal);
+        localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
+
+        alert(`${name} has been added successfully!`);
+
+        // Optionally clear the form
+        this.reset();
     });
-
-    function removeAnimal(animalName) {
-        // Update localStorage
-        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
-        const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
-        localStorage.setItem('savedAnimals', JSON.stringify(updatedAnimals));
-    }
 </script>
-
 
 </html>
