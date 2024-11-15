@@ -11,7 +11,6 @@
     <!-- Link to Specific Styles for the About Page -->
     <link rel="stylesheet" href="about.css">
     <script src="script.js" defer></script>
-
 </head>
 <body>
     <!-- Header Placeholder to Include the Header -->
@@ -19,7 +18,7 @@
 
     <!-- JavaScript to Include Header -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
@@ -33,33 +32,19 @@
     <main class="user-profile-container">
 
         <!-- Saved Animals Section -->
-       <section id="saved-animals">
-    <h2>Saved Animals</h2>
-    <div class="saved-animals-grid">
-        <div class="saved-animal-card">
-            <img src="buddy.jpg" alt="Buddy" class="saved-animal-image">
-            <h3>Buddy</h3>
-            <p>-5 miles away-</p>
-            <button class="remove-animal-button" data-animal-id="buddy">Remove</button>
-        </div>
-        <div class="saved-animal-card">
-            <img src="max.jpeg" alt="Max" class="saved-animal-image">
-            <h3>Max</h3>
-            <p> -25 miles away-</p>
-            <button class="remove-animal-button" data-animal-id="max">Remove</button>
-        </div>
-        <!-- Additional saved animals go here -->
-    </div>
-</section>
+        <section id="saved-animals">
+            <h2>Saved Animals</h2>
+            <div class="saved-animals-grid"></div>
+        </section>
 
         <!-- Post a New Animal Section -->
         <section id="post-animal">
             <h2>Post a New Animal for Adoption</h2>
-            <form action="#" method="POST" enctype="multipart/form-data" class="post-animal-form">
+            <form class="post-animal-form">
                 <label for="animal-name">Animal's Name:</label>
                 <input type="text" id="animal-name" name="animal-name" required>
 
-                <label for="animal-type">Animal Type (Dog or Cat):</label>
+                <label for="animal-type">Animal Type:</label>
                 <input type="text" id="animal-type" name="animal-type" required>
 
                 <label for="animal-breed">Breed:</label>
@@ -74,86 +59,115 @@
                 <label for="animal-photo">Upload Photo:</label>
                 <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required>
 
-                <button type="submit" class="submit-button">Submit</button>
+                <button type="submit">Add Animal</button>
             </form>
         </section>
     </main>
-</body>
-  <script>
-    document.querySelector('.post-animal-form').addEventListener('submit', function (event) {
-        event.preventDefault();
 
-        const name = document.getElementById('animal-name').value;
-        const type = document.getElementById('animal-type').value;
-        const breed = document.getElementById('animal-breed').value;
-        const age = document.getElementById('animal-age').value;
-        const location = document.getElementById('animal-location').value;
-        const photo = document.getElementById('animal-photo').files[0];
+    <!-- JavaScript for Form Submission and Rendering -->
+    <script>
+        // Function to save a new animal to localStorage
+        function saveAnimalToStorage(animal) {
+            const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
 
-        // Create a URL for the uploaded image (for local preview only)
-        const imageURL = URL.createObjectURL(photo);
+            // Check if the animal is already saved
+            if (animals.some(existingAnimal => existingAnimal.name === animal.name)) {
+                alert(`${animal.name} is already in your list!`);
+                return;
+            }
 
-        // Store the animal in localStorage
-        const newAnimal = {
-            name,
-            type,
-            breed,
-            age,
-            location,
-            image: imageURL,
-            distance: `${Math.floor(Math.random() * 50)} miles away`,
-        };
-
-        const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-        animals.push(newAnimal);
-        localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
-
-        alert(`${name} has been added successfully!`);
-
-        // Optionally clear the form
-        this.reset();
-        
-    });
-       // Function to remove an animal from localStorage and the DOM
-    function removeAnimal(animalName) {
-        // Get the saved animals from localStorage
-        const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-
-        // Filter out the animal to be removed
-        const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
-
-        // Update localStorage
-        localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
-
-        // Remove the animal's card from the DOM
-        const card = document.querySelector(`[data-animal-name="${animalName}"]`);
-        if (card) {
-            card.remove();
+            // Add the new animal
+            animals.push(animal);
+            localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
         }
-    }
 
-    // Load saved animals on page load and render them
-    document.addEventListener('DOMContentLoaded', function () {
-        const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-        const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
+        // Function to load animals from localStorage and display them
+        function renderSavedAnimals() {
+            const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+            const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
 
-        // Clear the grid before rendering
-        savedAnimalsGrid.innerHTML = '';
+            // Clear the grid to prevent duplicates
+            savedAnimalsGrid.innerHTML = '';
 
-        // Render saved animals
-        savedAnimals.forEach(animal => {
-            const card = document.createElement('div');
-            card.classList.add('saved-animal-card');
-            card.setAttribute('data-animal-name', animal.name); // Use the name as a unique identifier
-            card.innerHTML = `
-                <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
-                <h3>${animal.name}</h3>
-                <p>${animal.distance}</p>
-                <button class="remove-animal-button" onclick="removeAnimal('${animal.name}')">Remove</button>
-            `;
-            savedAnimalsGrid.appendChild(card);
+            // Render each saved animal
+            savedAnimals.forEach(animal => {
+                const card = document.createElement('div');
+                card.classList.add('saved-animal-card');
+                card.setAttribute('data-animal-name', animal.name); // Unique identifier
+                card.innerHTML = `
+                    <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
+                    <h3>${animal.name}</h3>
+                    <p>${animal.distance}</p>
+                    <button class="remove-animal-button" onclick="removeAnimal('${animal.name}')">Remove</button>
+                `;
+                savedAnimalsGrid.appendChild(card);
+            });
+        }
+
+        // Function to remove an animal from localStorage and the DOM
+        function removeAnimal(animalName) {
+            const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+
+            // Filter out the animal to be removed
+            const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
+
+            // Update localStorage
+            localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
+
+            // Re-render the animals on the page
+            renderSavedAnimals();
+        }
+
+        // Attach form submission handler and load animals on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("Page loaded successfully!");
+
+            // Handle form submission for posting a new animal
+            const form = document.querySelector('.post-animal-form');
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    const name = document.getElementById('animal-name').value;
+                    const type = document.getElementById('animal-type').value;
+                    const breed = document.getElementById('animal-breed').value;
+                    const age = document.getElementById('animal-age').value;
+                    const location = document.getElementById('animal-location').value;
+                    const photoInput = document.getElementById('animal-photo');
+
+                    if (!photoInput.files.length) {
+                        alert("Please select a photo.");
+                        return;
+                    }
+
+                    const photo = photoInput.files[0];
+                    const imageURL = URL.createObjectURL(photo);
+
+                    const newAnimal = {
+                        name,
+                        type,
+                        breed,
+                        age,
+                        location,
+                        image: imageURL,
+                        distance: `${Math.floor(Math.random() * 50)} miles away`,
+                    };
+
+                    saveAnimalToStorage(newAnimal);
+
+                    alert(`${name} has been added successfully!`);
+
+                    // Clear the form
+                    form.reset();
+
+                    // Re-render the animals
+                    renderSavedAnimals();
+                });
+            }
+
+            // Initial load of saved animals
+            renderSavedAnimals();
         });
-    });
-</script>
-
+    </script>
+</body>
 </html>
