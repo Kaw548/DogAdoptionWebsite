@@ -1,32 +1,14 @@
-// Function to save an animal to localStorage
-function saveAnimal(animalName, animalImage, animalDistance) {
-    // Fetch existing saved animals from localStorage
-    const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
+// Function to save a new animal to localStorage
+function saveAnimalToStorage(animal) {
+    const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
 
     // Check if the animal is already saved
-    if (savedAnimals.some(animal => animal.name === animalName)) {
-        alert(`${animalName} is already in your saved list!`);
+    if (animals.some(existingAnimal => existingAnimal.name === animal.name)) {
+        alert(`${animal.name} is already in your list!`);
         return;
     }
 
     // Add the new animal
-    const newAnimal = { name: animalName, image: animalImage, distance: animalDistance };
-    savedAnimals.push(newAnimal);
-
-    // Update localStorage
-    localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
-
-    // Notify the user
-    alert(`${animalName} has been saved to your profile!`);
-}
-
-// Log to ensure the JavaScript file is loaded
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("scripts.js loaded successfully!");
-});
-// Function to save a new animal to localStorage
-function saveAnimalToStorage(animal) {
-    const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
     animals.push(animal);
     localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
 }
@@ -35,6 +17,9 @@ function saveAnimalToStorage(animal) {
 function loadAnimalsToPage(containerSelector) {
     const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
     const container = document.querySelector(containerSelector);
+
+    // Clear the container to prevent duplicates
+    container.innerHTML = '';
 
     animals.forEach(animal => {
         const card = document.createElement('div');
@@ -45,14 +30,31 @@ function loadAnimalsToPage(containerSelector) {
                 <h2>${animal.name}</h2>
             </a>
             <p>${animal.distance}</p>
-            <button onclick="saveAnimal('${animal.name}', '${animal.image}', '${animal.distance}')" class="save-button">Save ${animal.name}</button>
+            <button onclick="removeAnimal('${animal.name}')" class="save-button">Remove ${animal.name}</button>
         `;
         container.appendChild(card);
     });
 }
 
-// Attach form submission handler to save an uploaded animal
+// Function to remove an animal from localStorage and the DOM
+function removeAnimal(animalName) {
+    const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+
+    // Filter out the animal to be removed
+    const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
+
+    // Update localStorage
+    localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
+
+    // Re-render the animals on the page
+    loadAnimalsToPage('.saved-animals-grid');
+}
+
+// Attach form submission handler and load animals on page load
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("scripts.js loaded successfully!");
+
+    // Handle form submission for posting a new animal
     const form = document.querySelector('.post-animal-form');
     if (form) {
         form.addEventListener('submit', function (event) {
@@ -79,13 +81,17 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             saveAnimalToStorage(newAnimal);
+
             alert(`${name} has been added successfully!`);
 
             // Clear the form
             form.reset();
+
+            // Re-render animals on the page
+            loadAnimalsToPage('.saved-animals-grid');
         });
     }
 
-    // Load animals into the main page
-    loadAnimalsToPage('.profiles-grid');
+    // Initial load of animals
+    loadAnimalsToPage('.saved-animals-grid');
 });
