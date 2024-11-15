@@ -142,3 +142,17 @@ h1 {
 .back-link:hover {
     text-decoration: underline;
 }
+.remove-animal-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.remove-animal-button:hover {
+    background-color: #ff4c4c;
+}
