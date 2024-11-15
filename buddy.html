@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawMatch - Adopt a Pet</title>
-  <head>
-     <link rel="stylesheet" href="globalstyle.css">
+    
+    <!-- Link to Shared Styles -->
+    <link rel="stylesheet" href="globalstyle.css">
+
+    <!-- Link to Page-Specific Styles -->
     <link rel="stylesheet" href="buddy.css">
 </head>
 <body>
+    <!-- Header Placeholder to Include the Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- JavaScript to Include Header -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
+
+    <!-- Buddy Profile Section -->
     <div class="profile-container">
         <div class="profile-details">
             <h1>Buddy</h1>
-          <p><strong>About Buddy:</strong> Buddy is a loyal and friendly Golden Retriever who loves playing fetch and going on long walks. He’s looking for a loving home!</p>
+            <p><strong>About Buddy:</strong> Buddy is a loyal and friendly Golden Retriever who loves playing fetch and going on long walks. He’s looking for a loving home!</p>
             <p><strong>Breed:</strong> Golden Retriever</p>
             <p><strong>Location:</strong> 5 miles away</p>
-        
+
             <button class="adopt-button" onclick="document.getElementById('adopt-section').scrollIntoView({behavior: 'smooth'});">Adopt Me!</button>
         </div>
         <div class="profile-image">
