@@ -1,3 +1,4 @@
+// Function to save an animal to localStorage
 function saveAnimal(animalName, animalImage, animalDistance) {
     // Fetch existing saved animals from localStorage
     const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
@@ -19,6 +20,7 @@ function saveAnimal(animalName, animalImage, animalDistance) {
     alert(`${animalName} has been saved to your profile!`);
 }
 
+// Log to ensure the JavaScript file is loaded
 document.addEventListener("DOMContentLoaded", function () {
-    console.log('JavaScript file loaded successfully!');
+    console.log("scripts.js loaded successfully!");
 });
