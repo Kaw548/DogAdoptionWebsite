@@ -89,7 +89,7 @@
             </div>
         </div>
     </main>
-       <script>
+      <script>
     document.addEventListener("DOMContentLoaded", function() {
         fetch('header.html')
             .then(response => response.text())
@@ -99,9 +99,23 @@
             .catch(error => console.error('Error loading header:', error));
     });
 
-        function saveAnimal(animalName) {
-            alert(animalName + " has been saved to your profile!");
-        }
-    </script>
+    function saveAnimal(animalName) {
+        // Get animal details
+        const card = document.querySelector(`.profile-card h2:contains('${animalName}')`).closest('.profile-card');
+        const image = card.querySelector('img').src;
+        const distance = card.querySelector('p').textContent;
+
+        // Save to localStorage
+        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
+        const newAnimal = { name: animalName, image, distance };
+        savedAnimals.push(newAnimal);
+
+        localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
+
+        // Alert the user
+        alert(animalName + " has been saved to your profile!");
+    }
+</script>
+
 </body>
 </html>
