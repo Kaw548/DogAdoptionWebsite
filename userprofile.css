@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
-    color: #333; /* Adding color to ensure better readability */
 }
 
 /* Heading Styles */
@@ -30,7 +29,6 @@ h1 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    text-align: center; /* Ensure centered text alignment */
 }
 
 .header-right {
@@ -43,20 +41,19 @@ h1 {
 .global-icon,
 .profile-icon {
     width: 40px;
-    height: 40px; /* Ensuring consistent size for icons */
+    height: auto;
     cursor: pointer;
 }
 
 /* Styling for PawMatch Link */
 .about-link {
     text-decoration: none;  /* Removes underline */
-    color: #2c3e50;          /* Keeps the link color consistent */
+    color: inherit;         /* Keeps the heading's original color */
     font-size: 24px;
-    font-weight: bold;       /* Emphasize the link to make it more noticeable */
 }
 
 .about-link:visited {
-    color: #2c3e50;          /* Prevents the link from turning purple */
+    color: inherit;         /* Prevents the link from turning purple */
 }
 
 /* User Profile Styles */
@@ -78,7 +75,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center; /* Align items in the center for better balance */
+    justify-content: space-around;
 }
 
 .saved-animal-card {
@@ -89,19 +86,13 @@ h1 {
     text-align: center;
     width: 180px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out; /* Adding a subtle hover effect */
-}
-
-.saved-animal-card:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
 }
 
 .saved-animal-image {
     width: 100%;
-    max-width: 150px;   /* Restricts the maximum width of the image */
-    height: auto;       /* Maintains the aspect ratio */
-    object-fit: cover;  /* Ensures the image fills the container appropriately */
-    border-radius: 5px; /* Adds a slight rounding to the corners */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 /* Post Animal Form */
@@ -140,48 +131,14 @@ h1 {
     cursor: pointer;
     font-size: 16px;
     align-self: flex-start;
-    transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #82b59e; /* Slightly darker color on hover */
+    background-color: #9dcfb6;
 }
 
-/* Back to All Profiles Link */
-.back-link {
-    display: block;
-    margin-top: 20px;
-    text-align: center;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
+
 
 .back-link:hover {
     text-decoration: underline;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .header-right {
-        justify-content: center;
-    }
-
-    .saved-animals-grid {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .saved-animal-card {
-        width: 100%; /* Make the cards take full width on smaller screens */
-    }
-
-    .about-link {
-        font-size: 20px; /* Smaller heading size for mobile */
-    }
 }
