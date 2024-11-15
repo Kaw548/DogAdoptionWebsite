@@ -112,6 +112,47 @@
 
         // Optionally clear the form
         this.reset();
+        
+    });
+       // Function to remove an animal from localStorage and the DOM
+    function removeAnimal(animalName) {
+        // Get the saved animals from localStorage
+        const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+
+        // Filter out the animal to be removed
+        const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
+
+        // Update localStorage
+        localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
+
+        // Remove the animal's card from the DOM
+        const card = document.querySelector(`[data-animal-name="${animalName}"]`);
+        if (card) {
+            card.remove();
+        }
+    }
+
+    // Load saved animals on page load and render them
+    document.addEventListener('DOMContentLoaded', function () {
+        const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+        const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
+
+        // Clear the grid before rendering
+        savedAnimalsGrid.innerHTML = '';
+
+        // Render saved animals
+        savedAnimals.forEach(animal => {
+            const card = document.createElement('div');
+            card.classList.add('saved-animal-card');
+            card.setAttribute('data-animal-name', animal.name); // Use the name as a unique identifier
+            card.innerHTML = `
+                <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
+                <h3>${animal.name}</h3>
+                <p>${animal.distance}</p>
+                <button class="remove-animal-button" onclick="removeAnimal('${animal.name}')">Remove</button>
+            `;
+            savedAnimalsGrid.appendChild(card);
+        });
     });
 </script>
 
