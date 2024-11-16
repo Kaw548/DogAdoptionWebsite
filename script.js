@@ -138,3 +138,26 @@ document.addEventListener("DOMContentLoaded", function () {
     renderPostedAnimals(); // User profile page
     loadPostedAnimalsToIndex(); // Index page
 });
+function loadPostedAnimalsToIndex() {
+    const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
+    const profilesGrid = document.querySelector(".profiles-grid");
+
+    // Clear dynamically added animals to prevent duplicates
+    const dynamicCards = profilesGrid.querySelectorAll(".dynamic-animal-card");
+    dynamicCards.forEach(card => card.remove());
+
+    // Render each posted animal
+    postedAnimals.forEach(animal => {
+        const card = document.createElement("div");
+        card.classList.add("profile-card", "dynamic-animal-card");
+        card.innerHTML = `
+            <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="animal-link">
+                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
+                <h2>${animal.name}</h2>
+            </a>
+            <p>${animal.location}</p>
+            <button onclick="saveAnimalToStorage(${JSON.stringify(animal)})" class="save-button">Save ${animal.name}</button>
+        `;
+        profilesGrid.appendChild(card);
+    });
+}
