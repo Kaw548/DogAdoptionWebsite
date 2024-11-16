@@ -1,76 +1,64 @@
-// Function to save an animal to the "Saved Animals" section
+// Function to save an animal to the "Saved Animals" list in localStorage
 function saveAnimalToStorage(animal) {
     const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
 
-    // Check if the animal is already saved
     if (savedAnimals.some(existingAnimal => existingAnimal.name === animal.name)) {
-        alert(`${animal.name} is already in your saved animals list!`);
+        alert(`${animal.name} is already in your saved animals!`);
         return;
     }
 
-    // Add the new animal
     savedAnimals.push(animal);
     localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
-    alert(`${animal.name} has been added to your saved animals!`);
 
-    // Re-render the saved animals
+    alert(`${animal.name} has been added to your saved animals!`);
     renderSavedAnimals();
 }
 
-// Function to post an animal to the "Your Posted Animals" section
-function postAnimal(animal) {
+// Function to save an animal to the "Posted Animals" list in localStorage
+function postAnimalToStorage(animal) {
     const postedAnimals = JSON.parse(localStorage.getItem('postedAnimals')) || [];
+
     postedAnimals.push(animal);
     localStorage.setItem('postedAnimals', JSON.stringify(postedAnimals));
+
     renderPostedAnimals();
 }
 
-// Function to render saved animals
+// Function to load saved animals and display them
 function renderSavedAnimals() {
     const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
     const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
 
-    // Clear the grid
-    savedAnimalsGrid.innerHTML = '';
-
-    if (savedAnimals.length === 0) {
-        savedAnimalsGrid.innerHTML = '<p>No animals have been saved yet.</p>';
-        return;
-    }
+    savedAnimalsGrid.innerHTML = ''; // Clear existing content
 
     savedAnimals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('animal-card');
+        card.classList.add('saved-animal-card');
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="animal-image">
+            <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
             <h3>${animal.name}</h3>
             <p>${animal.location}</p>
-            <button onclick="removeSavedAnimal('${animal.name}')" class="remove-button">Remove</button>
+            <button class="remove-animal-button" onclick="removeSavedAnimal('${animal.name}')">Remove</button>
         `;
         savedAnimalsGrid.appendChild(card);
     });
 }
 
-// Function to render posted animals
+// Function to load posted animals and display them
 function renderPostedAnimals() {
     const postedAnimals = JSON.parse(localStorage.getItem('postedAnimals')) || [];
     const postedAnimalsGrid = document.querySelector('.posted-animals-grid');
 
-    // Clear the grid
-    postedAnimalsGrid.innerHTML = '';
-
-    if (postedAnimals.length === 0) {
-        postedAnimalsGrid.innerHTML = '<p>No animals have been posted yet.</p>';
-        return;
-    }
+    postedAnimalsGrid.innerHTML = ''; // Clear existing content
 
     postedAnimals.forEach(animal => {
         const card = document.createElement('div');
-        card.classList.add('animal-card');
+        card.classList.add('posted-animal-card');
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="animal-image">
+            <img src="${animal.image}" alt="${animal.name}" class="posted-animal-image">
             <h3>${animal.name}</h3>
             <p>${animal.location}</p>
+            <button class="remove-animal-button" onclick="removePostedAnimal('${animal.name}')">Remove</button>
         `;
         postedAnimalsGrid.appendChild(card);
     });
@@ -81,50 +69,55 @@ function removeSavedAnimal(animalName) {
     const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
     const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
 
-    // Update localStorage and re-render
     localStorage.setItem('savedAnimals', JSON.stringify(updatedAnimals));
     renderSavedAnimals();
 }
 
-// Event listener for posting a new animal
+// Function to remove a posted animal
+function removePostedAnimal(animalName) {
+    const postedAnimals = JSON.parse(localStorage.getItem('postedAnimals')) || [];
+    const updatedAnimals = postedAnimals.filter(animal => animal.name !== animalName);
+
+    localStorage.setItem('postedAnimals', JSON.stringify(updatedAnimals));
+    renderPostedAnimals();
+}
+
+// Handle form submission for posting a new animal
+document.querySelector('.post-animal-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById('animal-name').value;
+    const type = document.getElementById('animal-type').value;
+    const breed = document.getElementById('animal-breed').value;
+    const age = document.getElementById('animal-age').value;
+    const location = document.getElementById('animal-location').value;
+    const photoInput = document.getElementById('animal-photo');
+
+    if (!photoInput.files.length) {
+        alert("Please upload a photo.");
+        return;
+    }
+
+    const photo = photoInput.files[0];
+    const imageURL = URL.createObjectURL(photo);
+
+    const newAnimal = {
+        name,
+        type,
+        breed,
+        age,
+        location,
+        image: imageURL,
+    };
+
+    postAnimalToStorage(newAnimal);
+
+    alert(`${name} has been added to your posted animals!`);
+    document.querySelector('.post-animal-form').reset();
+});
+
+// Load initial data
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('.post-animal-form');
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById('animal-name').value;
-        const type = document.getElementById('animal-type').value;
-        const breed = document.getElementById('animal-breed').value;
-        const age = document.getElementById('animal-age').value;
-        const location = document.getElementById('animal-location').value;
-        const photoInput = document.getElementById('animal-photo');
-
-        if (!photoInput.files.length) {
-            alert("Please select a photo.");
-            return;
-        }
-
-        const photo = photoInput.files[0];
-        const imageURL = URL.createObjectURL(photo);
-
-        const newAnimal = {
-            name,
-            type,
-            breed,
-            age,
-            location,
-            image: imageURL,
-        };
-
-        postAnimal(newAnimal);
-
-        alert(`${name} has been successfully posted!`);
-
-        // Clear the form
-        form.reset();
-    });
-
-    // Initial rendering of saved and posted animals
     renderSavedAnimals();
     renderPostedAnimals();
 });
