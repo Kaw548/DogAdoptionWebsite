@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About PawMatch</title>
-
-    <!-- Link to Shared Styles -->
+    <title>PawMatch - User Profile</title>
+    <!-- Shared Styles -->
     <link rel="stylesheet" href="globalstyle.css">
-
-    <!-- Link to Specific Styles for the About Page -->
-    <link rel="stylesheet" href="about.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Header Placeholder to Include the Header -->
+    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
-    <!-- JavaScript to Include Header -->
+    <!-- Load Header -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
@@ -27,6 +23,17 @@
                 .catch(error => console.error('Error loading header:', error));
         });
     </script>
+
+    <!-- User Profile Section -->
+    <main class="user-profile-container">
+        <section id="your-posted-animals">
+            <h2>Your Posted Animals</h2>
+            <div class="saved-animals-grid"></div>
+        </section>
+    </main>
+</body>
+</html>
+
 
     <!-- User Profile Section -->
     <main class="user-profile-container">
