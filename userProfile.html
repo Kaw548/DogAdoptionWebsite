@@ -26,21 +26,10 @@
 
     <!-- User Profile Section -->
     <main class="user-profile-container">
-        <section id="your-posted-animals">
-            <h2>Your Posted Animals</h2>
-            <div class="saved-animals-grid"></div>
-        </section>
-    </main>
-</body>
-</html>
 
-
-    <!-- User Profile Section -->
-    <main class="user-profile-container">
-
-        <!--users animals -->
-        <section id="Saved Animals:">
-            <h2>Saved Animals:</h2>
+        <!-- Saved Animals Section -->
+        <section id="saved-animals">
+            <h2>Saved Animals</h2>
             <div class="saved-animals-grid"></div>
         </section>
 
@@ -97,6 +86,11 @@
             savedAnimalsGrid.innerHTML = '';
 
             // Render each saved animal
+            if (savedAnimals.length === 0) {
+                savedAnimalsGrid.innerHTML = '<p>No animals have been saved yet.</p>';
+                return;
+            }
+
             savedAnimals.forEach(animal => {
                 const card = document.createElement('div');
                 card.classList.add('saved-animal-card');
@@ -104,7 +98,9 @@
                 card.innerHTML = `
                     <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
                     <h3>${animal.name}</h3>
+                    <p>${animal.location}</p>
                     <p>${animal.distance}</p>
+                    <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="view-profile-button">View Profile</a>
                     <button class="remove-animal-button" onclick="removeAnimal('${animal.name}')">Remove</button>
                 `;
                 savedAnimalsGrid.appendChild(card);
