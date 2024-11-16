@@ -109,15 +109,15 @@ h1 {
 .post-animal-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center-align all form elements */
+    align-items: center;
     gap: 15px;
 }
 
 .post-animal-form input,
 .post-animal-form label {
     font-size: 14px;
-    width: 90%; /* Ensure inputs take up most of the form's width */
-    max-width: 400px; /* Restrict overly wide inputs */
+    width: 90%;
+    max-width: 400px;
 }
 
 .post-animal-form input {
@@ -127,29 +127,14 @@ h1 {
     border-radius: 4px;
 }
 
-.submit-button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    align-self: center;
-    margin-top: 20px;
-}
-
-.submit-button:hover {
-    background-color: #45a049;
-}
-
 /* General Button Styles */
-button, 
-.view-profile-button, 
-.submit-button {
+button,
+.view-profile-button,
+.submit-button,
+.remove-animal-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4caf50; /* Green for all general buttons */
+    background-color: #9dcfb6; /* Consistent green for all buttons */
     color: white;
     border: none;
     border-radius: 5px;
@@ -157,29 +142,14 @@ button,
     text-align: center;
     cursor: pointer;
     text-decoration: none; /* For links styled as buttons */
-    margin: 5px 0; /* Consistent spacing */
+    margin: 5px 0;
     text-transform: capitalize; /* Ensure consistent casing */
 }
 
-/* Hover Effect for General Buttons */
-button:hover, 
-.view-profile-button:hover, 
-.submit-button:hover {
-    background-color: #45a049; /* Slightly darker green for hover */
-}
-
-/* Specific Button Variants */
-.remove-animal-button {
-    background-color: #ff6b6b; /* Red for remove */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 5px 0;
-}
-
+/* Hover Effect for All Buttons */
+button:hover,
+.view-profile-button:hover,
+.submit-button:hover,
 .remove-animal-button:hover {
-    background-color: #ff4c4c; /* Darker red for hover */
+    background-color: #8ab59f; /* Slightly darker green for hover */
 }
