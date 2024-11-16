@@ -153,6 +153,43 @@ h1 {
     margin-top: 10px;
 }
 
-.remove-animal-button:hover {
-    background-color: #ff4c4c;
+/* General Button Styles */
+button, 
+.view-profile-button, 
+.submit-button, 
+ {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4caf50; /* Consistent green color for all buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none; /* For links styled as buttons */
 }
+
+/* Hover Effect */
+button:hover, 
+.view-profile-button:hover, 
+.submit-button:hover, 
+.remove-animal-button:hover {
+    background-color: #45a049; /* Slightly darker green for hover */
+}
+
+/* Button Alignment and Spacing */
+button, 
+.view-profile-button, 
+.submit-button, 
+ {
+    margin: 5px 0; /* Consistent spacing */
+    text-transform: capitalize; /* Ensure text has consistent casing */
+}
+
+/* Specific Button Variants */
+.remove-animal-button {
+    background-color: #ff6b6b; /* Red for remove */
+}
+
+
