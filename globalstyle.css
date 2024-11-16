@@ -162,4 +162,36 @@ h1 {
     object-fit: cover; /* Crop image to fill area without distortion */
     border-bottom: 1px solid #ddd; 
     border-radius: 5px 5px 0 0;
+}/* Button Styles */
+button,
+.view-profile-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.view-profile-button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+}
+
+.view-profile-button:hover {
+    background-color: #007bb5; /* Darker blue on hover */
 }
