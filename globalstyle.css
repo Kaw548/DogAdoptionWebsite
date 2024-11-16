@@ -189,4 +189,25 @@ button {
     font-size: 16px;
     text-align: center;
 }
+/* Consistent Image Sizing for Posted Animals */
+.posted-animal-image {
+    width: 100%;              /* Ensures image width adapts to the card */
+    max-width: 150px;         /* Prevents images from being too large */
+    height: auto;             /* Maintains aspect ratio */
+    object-fit: cover;        /* Ensures consistent cropping */
+    border-radius: 5px;       /* Optional rounded corners */
+    margin: 0 auto;           /* Centers the image */
+    display: block;           /* Ensures proper layout alignment */
+}
+
+/* Styling for Posted Animal Cards */
+.posted-animal-card {
+    background-color: #fff;   /* White background for the card */
+    border: 1px solid #ddd;   /* Light border for card structure */
+    padding: 10px;            /* Inner spacing */
+    border-radius: 8px;       /* Rounded corners */
+    text-align: center;       /* Centered content */
+    width: 180px;             /* Consistent width for cards */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
 
