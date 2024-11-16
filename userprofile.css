@@ -7,6 +7,39 @@ body {
     background-color: #f4f4f9;
 }
 
+/* Saved Animals Section */
+.saved-animal-card,
+.posted-animal-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 180px; /* Ensure all cards have consistent width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Constrained Image Sizes */
+.saved-animal-image,
+.posted-animal-image {
+    width: 100%; /* Ensures image width adapts to the card */
+    max-width: 150px; /* Prevents images from becoming too large */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: cover; /* Ensures consistent cropping */
+    border-radius: 5px; /* Optional rounded corners */
+    margin: 0 auto; /* Centers the image */
+    display: block;
+}
+
+/* Animal Card Styles */
+.animal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
 /* Heading Styles */
 h1 {
     text-align: center;
