@@ -21,6 +21,11 @@ function loadAnimalsToPage(containerSelector) {
     // Clear the container to prevent duplicates
     container.innerHTML = '';
 
+    if (animals.length === 0) {
+        container.innerHTML = '<p>No animals have been posted yet.</p>';
+        return;
+    }
+
     animals.forEach(animal => {
         const card = document.createElement('div');
         card.classList.add('profile-card');
@@ -29,6 +34,8 @@ function loadAnimalsToPage(containerSelector) {
                 <img src="${animal.image}" alt="${animal.name}" class="profile-image">
                 <h3>${animal.name}</h3>
                 <p>${animal.distance}</p>
+                <p>${animal.location}</p>
+                <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="view-profile-button">View Profile</a>
                 <button onclick="removeAnimal('${animal.name}')" class="remove-button">Remove ${animal.name}</button>
             </div>
         `;
