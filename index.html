@@ -12,15 +12,19 @@
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
-    <!-- JavaScript to Include Header -->
+    <!-- JavaScript to Include Header and Load Posted Animals -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Load header
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-placeholder').innerHTML = data;
                 })
                 .catch(error => console.error('Error loading header:', error));
+
+            // Load dynamically posted animals
+            loadPostedAnimalsToIndex();
         });
     </script>
 
