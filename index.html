@@ -14,7 +14,7 @@
 
     <!-- JavaScript to Include Header -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
@@ -24,7 +24,6 @@
         });
     </script>
 
-<body>
     <!-- Pet Profiles Section -->
     <main class="pet-profiles-container">
         <div class="profiles-grid">
@@ -34,9 +33,8 @@
                     <img src="buddy.jpg" alt="Buddy" class="profile-image">
                     <h2>Buddy</h2>
                 </a>
-                <p>Kent,OH</p>
-               <button onclick="saveAnimalToStorage({ name: 'Buddy', image: 'buddy.jpg', location: 'Kent,OH' })" class="save-button">Save Buddy</button>
-
+                <p>Kent, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Buddy', image: 'buddy.jpg', location: 'Kent, OH' })" class="save-button">Save Buddy</button>
             </div>
 
             <!-- Max's Profile -->
@@ -45,8 +43,8 @@
                     <img src="max.jpeg" alt="Max" class="profile-image">
                     <h2>Max</h2>
                 </a>
-                <p>Canton,OH</p>
-                <button onclick="saveAnimalToStorage({name:'Max', image: 'max.jpeg',location: 'Canton,OH'})" class="save-button">Save Max</button>
+                <p>Canton, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Max', image: 'max.jpeg', location: 'Canton, OH' })" class="save-button">Save Max</button>
             </div>
 
             <!-- Bella's Profile -->
@@ -55,8 +53,8 @@
                     <img src="bella.jpg" alt="Bella" class="profile-image">
                     <h2>Bella</h2>
                 </a>
-                <p>Kent,OH-</p>
-                <button onclick="saveAnimalToStorage({name:'Bella', image: 'bella.jpg', location: 'Kent,OH'})" class="save-button">Save Bella</button>
+                <p>Kent, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Bella', image: 'bella.jpg', location: 'Kent, OH' })" class="save-button">Save Bella</button>
             </div>
 
             <!-- Charlie's Profile -->
@@ -65,8 +63,8 @@
                     <img src="charlie.jpg" alt="Charlie" class="profile-image">
                     <h2>Charlie</h2>
                 </a>
-                <p>Akron,OH </p>
-                <button onclick="saveAnimalToStorage({name:'Charlie', image:'charlie.jpg',location:'Akron,OH'})" class="save-button">Save Charlie</button>
+                <p>Akron, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Charlie', image: 'charlie.jpg', location: 'Akron, OH' })" class="save-button">Save Charlie</button>
             </div>
 
             <!-- Teddy's Profile -->
@@ -75,8 +73,8 @@
                     <img src="teddy.jpg" alt="Teddy" class="profile-image">
                     <h2>Teddy</h2>
                 </a>
-                <p>Dayton,OH </p>
-                <button onclick="saveAnimalToStorage({name:'Teddy', image:'teddy.jpg',location:'Dayton,OH'})" class="save-button">Save Teddy</button>
+                <p>Dayton, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Teddy', image: 'teddy.jpg', location: 'Dayton, OH' })" class="save-button">Save Teddy</button>
             </div>
 
             <!-- Fiona's Profile -->
@@ -85,8 +83,8 @@
                     <img src="fiona.jpg" alt="Fiona" class="profile-image">
                     <h2>Fiona</h2>
                 </a>
-                <p>Kent,OH </p>
-                <button onclick="saveAnimalToStorage({name:'Fiona', image:'fiona.jpg',location:'Kent,jpg'})" class="save-button">Save Fiona</button>
+                <p>Kent, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Fiona', image: 'fiona.jpg', location: 'Kent, OH' })" class="save-button">Save Fiona</button>
             </div>
 
             <!-- Pinto's Profile -->
@@ -95,31 +93,10 @@
                     <img src="pinto.jpg" alt="Pinto" class="profile-image">
                     <h2>Pinto</h2>
                 </a>
-                <p>Columbus,OH </p>
-                <button onclick="saveAnimalToStorage({name:'Pinto', image:'pinto.jpg', location:'Columbus,OH'})" class="save-button">Save Pinto</button>
+                <p>Columbus, OH</p>
+                <button onclick="saveAnimalToStorage({ name: 'Pinto', image: 'pinto.jpg', location: 'Columbus, OH' })" class="save-button">Save Pinto</button>
             </div>
         </div>
     </main>
 </body>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-        const profilesGrid = document.querySelector('.profiles-grid');
-
-        animals.forEach(animal => {
-            const card = document.createElement('div');
-            card.classList.add('profile-card');
-            card.innerHTML = `
-                <a href="#" class="animal-link">
-                    <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-                    <h2>${animal.name}</h2>
-                </a>
-                <p>${animal.distance}</p>
-                <button onclick="saveAnimal('${animal.name}', '${animal.image}', '${animal.distance}')" class="save-button">Save ${animal.name}</button>
-            `;
-            profilesGrid.appendChild(card);
-        });
-    });
-</script>
-
 </html>
