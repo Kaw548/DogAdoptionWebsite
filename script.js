@@ -1,66 +1,68 @@
-// Function to save a new animal to localStorage
+// Function to save a new animal to localStorage under "savedAnimals"
 function saveAnimalToStorage(animal) {
-    const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+    const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
 
     // Check if the animal is already saved
-    if (animals.some(existingAnimal => existingAnimal.name === animal.name)) {
-        alert(`${animal.name} is already in your list!`);
+    if (savedAnimals.some(existingAnimal => existingAnimal.name === animal.name)) {
+        alert(`${animal.name} is already in your saved list!`);
         return;
     }
 
     // Add the new animal
-    animals.push(animal);
-    localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
+    savedAnimals.push(animal);
+    localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
+
+    alert(`${animal.name} has been added to your saved animals!`);
 }
 
-// Function to load animals from localStorage and display them
+// Function to load saved animals from localStorage and display them
 function loadAnimalsToPage(containerSelector) {
-    const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+    const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
     const container = document.querySelector(containerSelector);
 
-    // Clear the container to prevent duplicates
+    // Clear the container
     container.innerHTML = '';
 
-    if (animals.length === 0) {
-        container.innerHTML = '<p>No animals have been posted yet.</p>';
+    if (savedAnimals.length === 0) {
+        container.innerHTML = '<p>No animals have been saved yet.</p>';
         return;
     }
 
-    animals.forEach(animal => {
+    // Render each saved animal
+    savedAnimals.forEach(animal => {
         const card = document.createElement('div');
         card.classList.add('profile-card');
         card.innerHTML = `
-            <div class="animal-card" data-animal-name="${animal.name}">
-                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-                <h3>${animal.name}</h3>
-                <p>${animal.distance}</p>
-                <p>${animal.location}</p>
-                <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="view-profile-button">View Profile</a>
-                <button onclick="removeAnimal('${animal.name}')" class="remove-button">Remove ${animal.name}</button>
-            </div>
+            <img src="${animal.image}" alt="${animal.name}" class="profile-image">
+            <h2>${animal.name}</h2>
+            <p>${animal.location}</p>
+            <button onclick="removeAnimal('${animal.name}')" class="remove-button">Remove</button>
         `;
         container.appendChild(card);
     });
 }
 
-// Function to remove an animal from localStorage and the DOM
+// Function to remove an animal from the saved list
 function removeAnimal(animalName) {
-    const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
+    const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
 
-    // Filter out the animal to be removed
+    // Remove the selected animal
     const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
 
     // Update localStorage
-    localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
+    localStorage.setItem('savedAnimals', JSON.stringify(updatedAnimals));
 
-    // Re-render the animals on the page
-    loadAnimalsToPage('.saved-animals-grid');
+    // Reload animals on the page
+    loadAnimalsToPage('.profiles-grid');
 }
 
-// Attach form submission handler and load animals on page load
+// On DOMContentLoaded, initialize the saved animals grid
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("scripts.js loaded successfully!");
+    console.log("Page loaded successfully!");
 
+    // Load saved animals to the grid
+    loadAnimalsToPage('.profiles-grid');
+});
     // Handle form submission for posting a new animal
     const form = document.querySelector('.post-animal-form');
     if (form) {
