@@ -179,12 +179,10 @@ button {
     color: white;
 }
 
-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
+
 
 .view-profile-button {
-    background-color: #008CBA; /* Blue */
+    background-color: #852222; /* Blue */
     color: white;
     text-decoration: none;
     display: inline-block;
@@ -192,6 +190,3 @@ button:hover {
     text-align: center;
 }
 
-.view-profile-button:hover {
-    background-color: #007bb5; /* Darker blue on hover */
-}
