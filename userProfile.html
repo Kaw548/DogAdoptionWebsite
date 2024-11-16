@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawMatch - User Profile</title>
-    <!-- Shared Styles -->
     <link rel="stylesheet" href="globalstyle.css">
     <script src="script.js" defer></script>
 </head>
@@ -29,148 +28,41 @@
 
         <!-- Saved Animals Section -->
         <section id="saved-animals">
-            <h2>Saved Animals and Posted Animals</h2>
+            <h2>Saved Animals</h2>
             <div class="saved-animals-grid"></div>
         </section>
 
+        <!-- Posted Animals Section -->
+        <section id="posted-animals">
+            <h2>Your Posted Animals</h2>
+            <div class="posted-animals-grid"></div>
+        </section>
+
         <!-- Post a New Animal Section -->
-       <section id="post-animal">
-    <h2>Post a New Animal for Adoption</h2>
-    <form class="post-animal-form">
-        <label for="animal-name">Animal's Name:</label>
-        <input type="text" id="animal-name" name="animal-name" required>
+        <section id="post-animal">
+            <h2>Post a New Animal for Adoption</h2>
+            <form class="post-animal-form">
+                <label for="animal-name">Animal's Name:</label>
+                <input type="text" id="animal-name" name="animal-name" required>
 
-        <label for="animal-type">Animal Type:</label>
-        <input type="text" id="animal-type" name="animal-type" required>
+                <label for="animal-type">Animal Type:</label>
+                <input type="text" id="animal-type" name="animal-type" required>
 
-        <label for="animal-breed">Breed:</label>
-        <input type="text" id="animal-breed" name="animal-breed" required>
+                <label for="animal-breed">Breed:</label>
+                <input type="text" id="animal-breed" name="animal-breed" required>
 
-        <label for="animal-age">Age:</label>
-        <input type="number" id="animal-age" name="animal-age" required>
+                <label for="animal-age">Age:</label>
+                <input type="number" id="animal-age" name="animal-age" required>
 
-        <label for="animal-location">Location:</label>
-        <input type="text" id="animal-location" name="animal-location" required>
+                <label for="animal-location">Location:</label>
+                <input type="text" id="animal-location" name="animal-location" required>
 
-        <label for="animal-photo">Upload Photo:</label>
-        <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required>
+                <label for="animal-photo">Upload Photo:</label>
+                <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required>
 
-        <button type="submit" class="submit-button">Add Animal</button>
-    </form>
-</section>
+                <button type="submit" class="submit-button">Add Animal</button>
+            </form>
+        </section>
     </main>
-
-    <!-- JavaScript for Form Submission and Rendering -->
-    <script>
-        // Function to save a new animal to localStorage
-        function saveAnimalToStorage(animal) {
-            const animals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-
-            // Check if the animal is already saved
-            if (animals.some(existingAnimal => existingAnimal.name === animal.name)) {
-                alert(`${animal.name} is already in your list!`);
-                return;
-            }
-
-            // Add the new animal
-            animals.push(animal);
-            localStorage.setItem('uploadedAnimals', JSON.stringify(animals));
-        }
-
-        // Function to load animals from localStorage and display them
-        function renderSavedAnimals() {
-            const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-            const savedAnimalsGrid = document.querySelector('.saved-animals-grid');
-
-            // Clear the grid to prevent duplicates
-            savedAnimalsGrid.innerHTML = '';
-
-            // Render each saved animal
-            if (savedAnimals.length === 0) {
-                savedAnimalsGrid.innerHTML = '<p>No animals have been saved yet.</p>';
-                return;
-            }
-
-            savedAnimals.forEach(animal => {
-                const card = document.createElement('div');
-                card.classList.add('saved-animal-card');
-                card.setAttribute('data-animal-name', animal.name); // Unique identifier
-                card.innerHTML = `
-                    <img src="${animal.image}" alt="${animal.name}" class="saved-animal-image">
-                    <h3>${animal.name}</h3>
-                    <p>${animal.location}</p>
-                    <p>${animal.distance}</p>
-                    <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="view-profile-button">View Profile</a>
-                    <button class="remove-animal-button" onclick="removeAnimal('${animal.name}')">Remove</button>
-                `;
-                savedAnimalsGrid.appendChild(card);
-            });
-        }
-
-        // Function to remove an animal from localStorage and the DOM
-        function removeAnimal(animalName) {
-            const savedAnimals = JSON.parse(localStorage.getItem('uploadedAnimals')) || [];
-
-            // Filter out the animal to be removed
-            const updatedAnimals = savedAnimals.filter(animal => animal.name !== animalName);
-
-            // Update localStorage
-            localStorage.setItem('uploadedAnimals', JSON.stringify(updatedAnimals));
-
-            // Re-render the animals on the page
-            renderSavedAnimals();
-        }
-
-        // Attach form submission handler and load animals on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log("Page loaded successfully!");
-
-            // Handle form submission for posting a new animal
-            const form = document.querySelector('.post-animal-form');
-            if (form) {
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-
-                    const name = document.getElementById('animal-name').value;
-                    const type = document.getElementById('animal-type').value;
-                    const breed = document.getElementById('animal-breed').value;
-                    const age = document.getElementById('animal-age').value;
-                    const location = document.getElementById('animal-location').value;
-                    const photoInput = document.getElementById('animal-photo');
-
-                    if (!photoInput.files.length) {
-                        alert("Please select a photo.");
-                        return;
-                    }
-
-                    const photo = photoInput.files[0];
-                    const imageURL = URL.createObjectURL(photo);
-
-                    const newAnimal = {
-                        name,
-                        type,
-                        breed,
-                        age,
-                        location,
-                        image: imageURL,
-                        distance: `${Math.floor(Math.random() * 50)} miles away`,
-                    };
-
-                    saveAnimalToStorage(newAnimal);
-
-                    alert(`${name} has been added successfully!`);
-
-                    // Clear the form
-                    form.reset();
-
-                    // Re-render the animals
-                    renderSavedAnimals();
-                });
-            }
-
-            // Initial load of saved animals
-            renderSavedAnimals();
-        });
-    </script>
 </body>
 </html>
