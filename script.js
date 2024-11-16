@@ -13,6 +13,9 @@ function saveAnimalToStorage(animal) {
     localStorage.setItem('savedAnimals', JSON.stringify(savedAnimals));
 
     alert(`${animal.name} has been added to your saved animals!`);
+
+    // Reload saved animals
+    loadAnimalsToPage('.saved-animals-grid');
 }
 
 // Function to load saved animals from localStorage and display them
@@ -52,17 +55,17 @@ function removeAnimal(animalName) {
     // Update localStorage
     localStorage.setItem('savedAnimals', JSON.stringify(updatedAnimals));
 
-    // Reload animals on the page
-    loadAnimalsToPage('.profiles-grid');
+    // Reload saved animals
+    loadAnimalsToPage('.saved-animals-grid');
 }
 
-// On DOMContentLoaded, initialize the saved animals grid
+// On DOMContentLoaded, initialize saved animals grid and handle form submission
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Page loaded successfully!");
 
     // Load saved animals to the grid
-    loadAnimalsToPage('.profiles-grid');
-});
+    loadAnimalsToPage('.saved-animals-grid');
+
     // Handle form submission for posting a new animal
     const form = document.querySelector('.post-animal-form');
     if (form) {
@@ -94,18 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 distance: `${Math.floor(Math.random() * 50)} miles away`,
             };
 
+            // Post the new animal
             saveAnimalToStorage(newAnimal);
 
             alert(`${name} has been added successfully!`);
 
             // Clear the form
             form.reset();
-
-            // Re-render animals on the page
-            loadAnimalsToPage('.saved-animals-grid');
         });
     }
-
-    // Initial load of animals
-    loadAnimalsToPage('.saved-animals-grid');
 });
