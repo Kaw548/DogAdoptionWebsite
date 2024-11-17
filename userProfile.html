@@ -66,48 +66,8 @@
         </section>
     </main>
 
-    <!-- JavaScript for Form Submission -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('.post-animal-form');
-            if (form) {
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-
-                    const name = document.getElementById('animal-name').value;
-                    const type = document.getElementById('animal-type').value;
-                    const breed = document.getElementById('animal-breed').value;
-                    const age = document.getElementById('animal-age').value;
-                    const location = document.getElementById('animal-location').value;
-                    const photoInput = document.getElementById('animal-photo');
-
-                    if (!photoInput.files.length) {
-                        alert('Please select a photo.');
-                        return;
-                    }
-
-                    const photo = photoInput.files[0];
-                    const imageURL = URL.createObjectURL(photo);
-
-                    const newAnimal = {
-                        name,
-                        type,
-                        breed,
-                        age,
-                        location,
-                        image: imageURL,
-                    };
-
-                    // Save to posted animals
-                    savePostedAnimal(newAnimal);
-
-                    // Re-render posted animals on the user profile page
-                    renderPostedAnimals();
-                    form.reset();
-                });
-            }
-
-            // Initial rendering of saved and posted animals
             renderSavedAnimals();
             renderPostedAnimals();
         });
