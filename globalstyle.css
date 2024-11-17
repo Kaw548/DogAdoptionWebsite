@@ -8,69 +8,8 @@ body {
     color: #333;
 }
 
-/* Header Section Styles */
-#site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #9dcfb6;  
-    color: white;
-    padding: 10px 20px;
-    position: relative;
-}
-
-.header-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-.header-center h1 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.header-right {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
-}
-
-#site-header a {
-    color: white; /* Ensures links in the header are white */
-    text-decoration: none;
-}
-
-/* Global and Profile Icons Styling */
-.global-icon,
-.profile-icon {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-}
-
-/* Main Content Section */
-main {
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50;
-}
-
-/* Pet Profiles Section */
-.profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    justify-items: center;
-}
-
-/* Profile Card Styles */
-.profile-card {
+/* Profile Cards for Index Page */
+.profiles-grid .profile-card {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -80,72 +19,14 @@ h1 {
     max-width: 300px;
 }
 
-.profile-card img {
+.profiles-grid .profile-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-.profile-card h2 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    color: #2c3e50;
-}
-
-.profile-card p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 0.9rem;
-}
-
-.save-button {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: white;
-    background-color: #28a745;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.save-button:hover {
-    background-color: #218838;
-}
-
-/* Profile Card Links Styling */
-.profile-card a {
-    text-decoration: none;
-    color: #2c3e50; /* Neutral color for the profile names */
-}
-
-.profile-card a:hover {
-    color: #007bff; /* Optional: Add a slight hover effect for interactivity */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .profile-card img {
-        height: 150px;
-    }
-    .save-button {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-}
-.saved-animals-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    max-width: 800px; /* Constrain grid width */
-    margin: auto; /* Center the grid */
-}
-
-/* Saved Animal Card */
-.saved-animal-card {
+/* Saved Animals Grid */
+.saved-animals-grid .saved-animal-card {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -155,38 +36,17 @@ h1 {
     overflow: hidden; /* Ensure content doesn’t overflow */
 }
 
-/* Saved Animal Image */
-.saved-animal-image {
+/.saved-animals-grid .saved-animal-image {
     width: 100%; /* Ensure image width matches card width */
     height: 120px; /* Set a consistent height */
     object-fit: cover; /* Crop image to fill area without distortion */
-    border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
     border-radius: 5px 5px 0 0;
-}/* Button Styles */
-button,
-.view-profile-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin: 5px;
 }
 
-button {
+/* Specificity for Buttons */
+button,
+.profiles-grid .save-button {
     background-color: #4CAF50; /* Green */
     color: white;
 }
-
-
-
-.view-profile-button {
-    background-color: #852222; /* Blue */
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    text-align: center;
-}
-
