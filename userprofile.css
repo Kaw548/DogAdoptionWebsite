@@ -164,23 +164,4 @@ button:hover,
     color: inherit;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .saved-animal-card,
-    .posted-animal-card {
-        width: 150px; /* Adjust card width for smaller screens */
-    }
 
-    .saved-animal-image,
-    .posted-animal-image {
-        height: 100px; /* Adjust image height for smaller screens */
-    }
-
-    button,
-    .view-profile-button,
-    .submit-button,
-    .remove-animal-button {
-        font-size: 0.9rem;
-        padding: 8px 12px; /* Adjust button padding */
-    }
-}
