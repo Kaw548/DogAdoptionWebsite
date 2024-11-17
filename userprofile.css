@@ -1,124 +1,76 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMatch - User Profile</title>
+    <link rel="stylesheet" href="globalstyle.css">
+    <link rel="stylesheet" href="userprofile.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
-/* Saved and Posted Animal Cards */
-.saved-animal-card,
-.posted-animal-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-    height: auto; /* Allow flexible height */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
+    <!-- Load Header -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
 
-/* Constrained Image Sizes */
-.saved-animal-image,
-.posted-animal-image {
-    width: 100%;
-    height: 200px; /* Match height with index profiles */
-    object-fit: cover; /* Maintain aspect ratio and crop excess */
-    border-radius: 5px; /* Rounded corners */
-}
+    <!-- User Profile Section -->
+    <main class="user-profile-container">
 
-/* Animal Card Headings */
-.saved-animal-card h3,
-.posted-animal-card h3 {
-    margin: 10px 0;
-    font-size: 1.2rem; /* Match index profile font size */
-    color: #2c3e50;
-    text-align: center;
-}
+        <!-- Saved Animals Section -->
+        <section id="saved-animals">
+            <h2>Saved Animals</h2>
+            <div class="saved-animals-grid"></div>
+        </section>
 
-/* Animal Card Text */
-.saved-animal-card p,
-.posted-animal-card p {
-    margin: 5px 0;
-    font-size: 0.9rem; /* Match index profile font size */
-    color: #555;
-    text-align: center;
-}
+        <!-- Posted Animals Section -->
+        <section id="posted-animals">
+            <h2>Your Posted Animals</h2>
+            <div class="posted-animals-grid"></div>
+        </section>
 
-/* Grid Containers */
-.saved-animals-grid,
-.posted-animals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
+        <!-- Post a New Animal Section -->
+        <section id="post-animal">
+            <h2>Post a New Animal for Adoption</h2>
+            <form class="post-animal-form">
+                <label for="animal-name">Animal's Name:</label>
+                <input type="text" id="animal-name" name="animal-name" required>
 
-/* General Button Styles */
-button,
-.view-profile-button,
-.submit-button,
-.remove-animal-button {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #9dcfb6;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    text-align: center;
-    cursor: pointer;
-    margin: 5px 0;
-}
+                <label for="animal-type">Animal Type:</label>
+                <input type="text" id="animal-type" name="animal-type" required>
 
-/* Button Hover Effect */
-button:hover,
-.view-profile-button:hover,
-.submit-button:hover,
-.remove-animal-button:hover {
-    background-color: #8ab59f;
-}
+                <label for="animal-breed">Breed:</label>
+                <input type="text" id="animal-breed" name="animal-breed" required>
 
-/* Center Post Animal Section */
-#post-animal {
-    margin: 40px auto;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    max-width: 600px;
-    text-align: center;
-}
+                <label for="animal-age">Age:</label>
+                <input type="number" id="animal-age" name="animal-age" required>
 
-/* Post Animal Form */
-.post-animal-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
+                <label for="animal-location">Location:</label>
+                <input type="text" id="animal-location" name="animal-location" required>
 
-.post-animal-form input,
-.post-animal-form label {
-    font-size: 14px;
-    width: 90%;
-    max-width: 400px;
-}
+                <label for="animal-photo">Upload Photo:</label>
+                <input type="file" id="animal-photo" name="animal-photo" accept="image/*" required>
 
-.post-animal-form input {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+                <button type="submit" class="submit-button">Add Animal</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderSavedAnimals();
+            renderPostedAnimals();
+        });
+    </script>
+</body>
+</html>
