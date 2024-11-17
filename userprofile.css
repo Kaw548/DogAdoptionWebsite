@@ -15,25 +15,38 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 180px; /* Consistent card width */
+    width: 180px; /* Consistent width */
+    max-width: 200px; /* Prevent width from expanding */
+    max-height: 250px; /* Prevent excessive height */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space out content */
-    align-items: center; /* Center content */
-    overflow: hidden; /* Prevent overflow of content */
+    justify-content: space-between; /* Space content evenly */
+    align-items: center;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 /* Constrained Image Sizes */
 .saved-animal-image,
 .posted-animal-image {
-    width: 100%; /* Fit image to card width */
-    max-width: 150px; /* Limit maximum width */
-    height: 120px; /* Fixed height for uniformity */
-    object-fit: cover; /* Crop image to fit the dimensions */
+    width: 100%; /* Fit the width of the card */
+    max-width: 150px; /* Constrain max width */
+    height: 120px; /* Fixed height for consistency */
+    object-fit: cover; /* Crop and fit without distortion */
     border-radius: 5px; /* Rounded corners for aesthetics */
-    margin: 0 auto; /* Center the image horizontally */
     display: block; /* Ensure proper display */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Grid Container for Saved and Posted Animals */
+.saved-animals-grid,
+.posted-animals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center the grid */
+    max-width: 800px; /* Constrain grid width */
+    margin: 0 auto; /* Center the grid within the page */
 }
 
 /* Animal Card Headings */
