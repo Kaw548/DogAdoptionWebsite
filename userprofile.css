@@ -24,7 +24,21 @@ h2 {
     gap: 20px;
     justify-content: center;
 }
+/* Card Text Styling */
+.saved-animal-card h3 {
+    font-size: 1.2rem; /* Slightly larger for visibility */
+    font-weight: bold;
+    color: #333; /* Dark gray for readability */
+    text-align: center;
+    margin: 10px 0;
+}
 
+.saved-animal-card p {
+    font-size: 1rem;
+    color: #555; /* Medium gray for readability */
+    text-align: center;
+    margin: 5px 0;
+}
 /* Animal Cards */
 .saved-animal-card,
 .posted-animal-card {
