@@ -24,21 +24,7 @@ h2 {
     gap: 20px;
     justify-content: center;
 }
-/* Card Text Styling */
-.saved-animal-card h3 {
-    font-size: 1.2rem; /* Slightly larger for visibility */
-    font-weight: bold;
-    color: #333; /* Dark gray for readability */
-    text-align: center;
-    margin: 10px 0;
-}
 
-.saved-animal-card p {
-    font-size: 1rem;
-    color: #555; /* Medium gray for readability */
-    text-align: center;
-    margin: 5px 0;
-}
 /* Animal Cards */
 .saved-animal-card,
 .posted-animal-card {
@@ -49,12 +35,13 @@ h2 {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: space-between; /* Space elements evenly */
+    align-items: center; /* Center-align content */
     width: 200px;
-    height: 300px; /* Ensure consistent height */
+    height: 300px; /* Fixed height for consistency */
+    overflow: hidden;
+    position: relative; /* Ensure relative positioning for layout */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -76,24 +63,49 @@ h2 {
     margin-bottom: 10px;
 }
 
-/* Card Text */
+/* Card Text Styling */
 .saved-animal-card h3,
-.saved-animal-card p {
-    font-size: 1rem;
+.posted-animal-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
     color: #333;
+    margin: 10px 0; /* Consistent margin */
+}
+
+.saved-animal-card p,
+.posted-animal-card p {
+    font-size: 1rem;
+    color: #555; /* Medium gray for readability */
+    margin: 5px 0; /* Reduce margin for better spacing */
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-    margin: 5px 0;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
+    max-width: 180px; /* Ensure consistent width */
+}
+
+/* Remove Button Styling */
+.remove-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    color: white;
+    cursor: pointer;
+    margin-top: auto; /* Push button to the bottom of the card */
+    transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: #e63939;
 }
 
 /* Placeholder Text for Empty States */
-.saved-animals-grid p,
-.posted-animals-grid p {
+.saved-animals-grid > p,
+.posted-animals-grid > p {
     font-size: 1rem;
-    color: #777;
+    color: #777; /* Lighter gray for placeholder text */
     text-align: center;
     width: 100%;
 }
