@@ -53,7 +53,7 @@ function savePostedAnimal(animal) {
     }
 }
 
-// Function to render saved animals on the user profile page
+
 function renderSavedAnimals() {
     const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
     const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
@@ -68,92 +68,45 @@ function renderSavedAnimals() {
     }
 
     savedAnimals.forEach(animal => {
-        // Ensure the correct path for GitHub Pages or relative rendering
-        const imageSrc = animal.image.startsWith("http")
-            ? animal.image
-            : `./${animal.image}`; // Adjust path as needed
-
-        // Debug the image paths
-        console.log("Rendering animal:", {
-            name: animal.name,
-            image: imageSrc,
-            location: animal.location,
-        });
+        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
 
         const card = document.createElement("div");
         card.classList.add("saved-animal-card");
         card.innerHTML = `
-            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
-            <h3>${animal.name}</h3>
-            <p>${animal.location}</p>
+            <img src="${imageSrc}" alt="${animal.name}" class="saved-animal-image">
+            <h3>${animal.name || "Unnamed Animal"}</h3>
+            <p>${animal.location || "Unknown Location"}</p>
             <button class="remove-button" onclick="removeSavedAnimal('${animal.name}')">Remove</button>
         `;
         savedAnimalsGrid.appendChild(card);
     });
 }
 
-
-// Function to render posted animals on the user profile page
 function renderPostedAnimals() {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
     const postedAnimalsGrid = document.querySelector(".posted-animals-grid");
 
     if (!postedAnimalsGrid) return;
 
-    // Clear the container
-    postedAnimalsGrid.innerHTML = "";
+    postedAnimalsGrid.innerHTML = ""; // Clear existing content
 
     if (postedAnimals.length === 0) {
         postedAnimalsGrid.innerHTML = "<p>No animals have been posted yet.</p>";
         return;
     }
 
-    // Render each posted animal
     postedAnimals.forEach(animal => {
-        const imageSrc = animal.image && animal.image.startsWith("http")
-            ? animal.image
-            : placeholderImage;
+        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
 
         const card = document.createElement("div");
         card.classList.add("posted-animal-card");
         card.innerHTML = `
-            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
-            <h3>${truncateText(animal.name, 15)}</h3>
-            <p>${truncateText(animal.location, 20)}</p>
+            <img src="${imageSrc}" alt="${animal.name}" class="posted-animal-image">
+            <h3>${animal.name || "Unnamed Animal"}</h3>
+            <p>${animal.location || "Unknown Location"}</p>
             <button class="remove-button" onclick="removePostedAnimal('${animal.name}')">Remove</button>
         `;
         postedAnimalsGrid.appendChild(card);
-    });
-}
-
-// Function to render posted animals dynamically on the index page
-function loadPostedAnimalsToIndex() {
-    const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
-    const profilesGrid = document.querySelector(".profiles-grid");
-
-    if (!profilesGrid) return;
-
-    // Clear dynamically added animals to prevent duplicates
-    const dynamicCards = profilesGrid.querySelectorAll(".dynamic-animal-card");
-    dynamicCards.forEach(card => card.remove());
-
-    // Render each posted animal
-    postedAnimals.forEach(animal => {
-        const imageSrc = animal.image && animal.image.startsWith("http")
-            ? animal.image
-            : placeholderImage;
-
-        const card = document.createElement("div");
-        card.classList.add("profile-card", "dynamic-animal-card");
-        card.innerHTML = `
-            <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="animal-link">
-                <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
-                <h2>${truncateText(animal.name, 15)}</h2>
-            </a>
-            <p>${truncateText(animal.location, 20)}</p>
-            <button onclick="saveAnimalToStorage(${JSON.stringify(animal)})" class="save-button">Save ${animal.name}</button>
-        `;
-        profilesGrid.appendChild(card);
     });
 }
 
@@ -171,12 +124,11 @@ function removePostedAnimal(name) {
     postedAnimals = postedAnimals.filter(animal => animal.name !== name);
     localStorage.setItem("postedAnimals", JSON.stringify(postedAnimals));
     renderPostedAnimals();
-    loadPostedAnimalsToIndex(); // Update index page dynamically
 }
 
 // Initialize page content on DOM load
 document.addEventListener("DOMContentLoaded", function () {
-    renderSavedAnimals(); // Render saved animals on the user profile page
-    renderPostedAnimals(); // Render posted animals on the user profile page
-    loadPostedAnimalsToIndex(); // Render posted animals dynamically on the index page
+    renderSavedAnimals();
+    renderPostedAnimals();
 });
+
