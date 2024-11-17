@@ -37,12 +37,12 @@ body {
     width: 40px;
     height: auto;
     cursor: pointer;
+    object-fit: contain; /* Ensures icons retain proportions */
 }
 
 /* Main Containers */
 .user-profile-container {
     max-width: 90%;
-    width: auto;
     margin: auto;
     padding: 20px;
     background-color: #fff;
@@ -58,8 +58,8 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 200px; /* Adjust width for visibility */
-    height: 300px; /* Adjust height to avoid excessive size */
+    width: 200px; /* Fixed width for consistent layout */
+    height: 300px; /* Fixed height to fit content */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -68,6 +68,46 @@ body {
     overflow: hidden;
 }
 
+/* Animal Card Images */
+.saved-animal-card img,
+.posted-animal-card img {
+    width: 100%; /* Fit to card width */
+    height: 150px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures images are cropped to fit without distortion */
+    border-radius: 5px;
+    display: block;
+}
+
+/* Animal Card Content */
+.saved-animal-card h3,
+.posted-animal-card h3 {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
+}
+
+.saved-animal-card p,
+.posted-animal-card p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+/* Grids for Animal Cards */
+.saved-animals-grid,
+.posted-animals-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 800px;
+    margin: auto;
+}
 
 /* Buttons */
 button,
