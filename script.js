@@ -1,5 +1,5 @@
 // Placeholder image for missing or invalid image URLs
-const placeholderImage = "default-placeholder.png";
+const placeholderImage = "images/default-placeholder.png"; // Ensure this path is correct
 
 // Helper function to truncate text
 function truncateText(text, maxLength) {
