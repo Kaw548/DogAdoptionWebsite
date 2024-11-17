@@ -1,4 +1,4 @@
-/* General Container Styles */
+/* General Layout */
 .user-profile-container {
     padding: 20px;
     max-width: 1200px;
@@ -16,13 +16,14 @@ h2 {
     text-align: center;
 }
 
-/* Saved Animals Section */
+/* Grid Layout */
 .saved-animals-grid,
 .posted-animals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
-    gap: 20px; /* Space between cards */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     justify-content: center;
+    align-items: start;
 }
 
 /* Animal Cards */
@@ -39,43 +40,39 @@ h2 {
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    width: 200px;
+    min-height: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .saved-animal-card:hover,
 .posted-animal-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.saved-animal-image {
+/* Image Styling */
+.saved-animal-image,
+.posted-animal-image {
     width: 100%;
     max-width: 150px;
-    height: 120px; /* Fixed height for uniformity */
-    object-fit: cover; /* Crop or fit the image */
+    height: 120px;
+    object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-
-/* Card Text */
+/* Text Styling */
 .saved-animal-card h3,
-.posted-animal-card h3 {
+.saved-animal-card p {
     font-size: 1rem;
     color: #333;
     text-align: center;
-    margin: 10px 0;
+    margin: 5px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.saved-animal-card p,
-.posted-animal-card p {
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-    margin: 5px 0;
+    max-width: 180px;
 }
 
 /* Buttons */
@@ -94,59 +91,4 @@ button,
 button:hover,
 .remove-button:hover {
     background-color: #8ab59f;
-}
-
-/* Post Animal Form */
-#post-animal {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-}
-
-.post-animal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
-
-.post-animal-form label {
-    font-size: 14px;
-    color: #444;
-    width: 100%;
-    max-width: 400px;
-    text-align: left;
-}
-
-.post-animal-form input {
-    font-size: 14px;
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Placeholder Text for Empty States */
-.saved-animals-grid p,
-.posted-animals-grid p {
-    font-size: 1rem;
-    color: #777;
-    text-align: center;
-    width: 100%;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .saved-animals-grid,
-    .posted-animals-grid {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-    }
-
-    .saved-animal-card,
-    .posted-animal-card {
-        width: 100%; /* Full width for mobile */
-    }
 }
