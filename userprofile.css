@@ -7,7 +7,7 @@ body {
     background-color: #f4f4f9;
 }
 
-/* Card Styles for Saved and Posted Animals */
+/* Saved and Posted Animal Cards */
 .saved-animal-card,
 .posted-animal-card {
     background-color: #fff;
@@ -15,83 +15,86 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 180px; /* Fixed width */
-    height: 250px; /* Fixed height */
+    width: 180px; /* Consistent width */
+    max-width: 200px; /* Prevent excessive width */
+    height: 250px; /* Fixed height for uniformity */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
+    justify-content: space-between; /* Space content evenly */
+    align-items: center; /* Center content */
+    overflow: hidden; /* Prevent content overflow */
 }
 
-/* Image Styles */
+/* Constrained Image Sizes */
 .saved-animal-image,
 .posted-animal-image {
-    width: 100%;
-    max-width: 150px; /* Fixed max width */
+    width: 100%; /* Fit the card width */
+    max-width: 150px; /* Prevent image from being too wide */
     height: 120px; /* Fixed height */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    object-fit: cover; /* Crop and fit image properly */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space below the image */
 }
 
-/* Headings in Cards */
+/* Animal Card Headings */
 .saved-animal-card h3,
 .posted-animal-card h3 {
+    margin: 5px 0;
     font-size: 1rem;
     color: #333;
-    margin: 5px 0;
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
 }
 
-/* Text in Cards */
+/* Animal Card Text */
 .saved-animal-card p,
 .posted-animal-card p {
+    margin: 3px 0;
     font-size: 0.9rem;
     color: #555;
-    margin: 3px 0;
     text-align: center;
 }
 
-/* Grid Container */
+/* Grid Container for Saved and Posted Animals */
 .saved-animals-grid,
 .posted-animals-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    max-width: 800px;
-    margin: auto;
+    justify-content: center; /* Center the grid */
+    max-width: 800px; /* Constrain grid width */
+    margin: 0 auto; /* Center the grid within the page */
 }
 
-/* Buttons */
+/* General Button Styles */
 button,
 .view-profile-button,
 .submit-button,
 .remove-animal-button {
-    padding: 10px 15px;
-    font-size: 14px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #9dcfb6; /* Consistent green button color */
+    color: white;
     border: none;
     border-radius: 5px;
-    background-color: #9dcfb6;
-    color: white;
+    font-size: 16px;
+    text-align: center;
     cursor: pointer;
     margin: 5px 0;
-    text-align: center;
 }
 
+/* Button Hover Effect */
 button:hover,
 .view-profile-button:hover,
 .submit-button:hover,
 .remove-animal-button:hover {
-    background-color: #8ab59f;
+    background-color: #8ab59f; /* Slightly darker green on hover */
 }
 
-/* Post New Animal Section */
+/* Center Post Animal Section */
 #post-animal {
     margin: 40px auto;
     background-color: #f9f9f9;
@@ -102,6 +105,7 @@ button:hover,
     text-align: center;
 }
 
+/* Post Animal Form */
 .post-animal-form {
     display: flex;
     flex-direction: column;
