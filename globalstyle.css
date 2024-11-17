@@ -68,48 +68,6 @@ body {
     overflow: hidden;
 }
 
-/* Images */
-.saved-animal-image,
-.posted-animal-image {
-    width: 100%;
-    max-width: 150px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 5px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Animal Card Text */
-.saved-animal-card h3,
-.posted-animal-card h3 {
-    font-size: 1rem;
-    margin: 5px 0;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.saved-animal-card p,
-.posted-animal-card p {
-    font-size: 0.9rem;
-    margin: 3px 0;
-    color: #555;
-    text-align: center;
-}
-
-/* Grids */
-.saved-animals-grid,
-.posted-animals-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    max-width: 100%;
-    padding: 20px;
-    margin: auto;
-}
 
 /* Buttons */
 button,
