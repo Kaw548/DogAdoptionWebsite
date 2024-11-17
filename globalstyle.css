@@ -15,121 +15,80 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 180px; /* Ensure all cards have consistent width */
+    width: 180px; /* Consistent card width */
+    height: 250px; /* Fixed card height to prevent excessive size */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
 }
 
 /* Constrained Image Sizes */
 .saved-animal-image,
 .posted-animal-image {
-    width: 100%; /* Ensures image width adapts to the card */
-    max-width: 150px; /* Prevents images from becoming too large */
-    height: auto; /* Maintains aspect ratio */
-    object-fit: cover; /* Ensures consistent cropping */
-    border-radius: 5px; /* Optional rounded corners */
-    margin: 0 auto; /* Centers the image */
+    width: 100%;
+    max-width: 150px; /* Limit image width */
+    height: 120px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures images fit dimensions without distortion */
+    border-radius: 5px; /* Rounded corners */
     display: block;
+    margin-bottom: 10px;
 }
 
-/* Animal Card Styles */
-.animal-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-
-/* Heading Styles */
-h1 {
+/* Animal Card Content */
+.saved-animal-card h3,
+.posted-animal-card h3 {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
     text-align: center;
-    margin: 20px;
-    color: #2c3e50;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
 }
 
-/* Header Section Styles */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+.saved-animal-card p,
+.posted-animal-card p {
+    margin: 3px 0;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
 }
 
-.header-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.header-right {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
-}
-
-/* Styling for Global and Profile Icons */
-.global-icon,
-.profile-icon {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-}
-
-/* Styling for PawMatch Link */
-.about-link {
-    text-decoration: none;
-    color: inherit;
-    font-size: 24px;
-}
-
-.about-link:visited {
-    color: inherit;
-}
-
-/* User Profile Styles */
-.user-profile-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Saved Animals Section */
-#saved-animals {
-    margin-bottom: 30px;
-}
-
-.saved-animals-grid {
+/* Grid Containers */
+.saved-animals-grid,
+.posted-animals-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-around;
+    justify-content: center;
+    max-width: 800px;
+    margin: auto;
 }
 
-.saved-animal-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    width: 180px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Constrained Image Sizes for Saved Animals */
-.saved-animal-image {
-    width: 100%;
-    max-width: 150px; /* Set a maximum width for images */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure consistent fit */
+/* Button Styles */
+button,
+.view-profile-button,
+.submit-button,
+.remove-animal-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
     border-radius: 5px;
-    margin: 0 auto;
-    display: block; /* Center the image */
+    background-color: #9dcfb6;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    text-align: center;
+}
+
+button:hover,
+.view-profile-button:hover,
+.submit-button:hover,
+.remove-animal-button:hover {
+    background-color: #8ab59f;
 }
 
 /* Center Post Animal Section */
@@ -164,29 +123,43 @@ h1 {
     border-radius: 4px;
 }
 
-/* General Button Styles */
-button,
-.view-profile-button,
-.submit-button,
-.remove-animal-button {
-    display: inline-block;
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
-    background-color: #9dcfb6; /* Consistent green for all buttons */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none; /* For links styled as buttons */
-    margin: 5px 0;
-    text-transform: capitalize; /* Ensure consistent casing */
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover Effect for All Buttons */
-button:hover,
-.view-profile-button:hover,
-.submit-button:hover,
-.remove-animal-button:hover {
-    background-color: #8ab59f; /* Slightly darker green for hover */
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+}
+
+/* Icons */
+.global-icon,
+.profile-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Styling for PawMatch Link */
+.about-link {
+    text-decoration: none;
+    color: inherit;
+    font-size: 24px;
+}
+
+.about-link:visited {
+    color: inherit;
 }
