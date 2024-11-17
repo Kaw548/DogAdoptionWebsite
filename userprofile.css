@@ -1,3 +1,21 @@
+/* General Container Styling */
+.user-profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Section Headings */
+h2 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 /* Grid Layout for Saved/Posted Animals */
 .saved-animals-grid,
 .posted-animals-grid {
@@ -35,11 +53,12 @@
 /* Image Styling */
 .saved-animal-image,
 .posted-animal-image {
+    display: block;
     width: 100%;
-    max-width: 150px;
+    max-width: 150px; /* Limit image width */
     height: 120px; /* Fixed height */
-    object-fit: cover;
-    border-radius: 5px;
+    object-fit: cover; /* Prevent distortion */
+    border-radius: 5px; /* Optional rounded corners */
     margin-bottom: 10px;
 }
 
