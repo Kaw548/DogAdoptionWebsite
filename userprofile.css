@@ -48,16 +48,15 @@ h2 {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Image Styles */
-.saved-animal-image,
-.posted-animal-image {
+.saved-animal-image {
     width: 100%;
     max-width: 150px;
-    height: 120px;
-    object-fit: cover;
+    height: 120px; /* Fixed height for uniformity */
+    object-fit: cover; /* Crop or fit the image */
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 
 /* Card Text */
 .saved-animal-card h3,
