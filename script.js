@@ -1,3 +1,11 @@
+// Placeholder image for missing or invalid image URLs
+const placeholderImage = "default-placeholder.png";
+
+// Helper function to truncate text
+function truncateText(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+}
+
 // Function to save a new animal under "Saved Animals"
 function saveAnimalToStorage(animal) {
     const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
@@ -62,12 +70,16 @@ function renderSavedAnimals() {
 
     // Render each saved animal
     savedAnimals.forEach(animal => {
+        const imageSrc = animal.image && animal.image.startsWith("http")
+            ? animal.image
+            : placeholderImage;
+
         const card = document.createElement("div");
         card.classList.add("saved-animal-card");
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-            <h3>${animal.name}</h3>
-            <p>${animal.location}</p>
+            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
+            <h3>${truncateText(animal.name, 15)}</h3>
+            <p>${truncateText(animal.location, 20)}</p>
             <button class="remove-button" onclick="removeSavedAnimal('${animal.name}')">Remove</button>
         `;
         savedAnimalsGrid.appendChild(card);
@@ -91,12 +103,16 @@ function renderPostedAnimals() {
 
     // Render each posted animal
     postedAnimals.forEach(animal => {
+        const imageSrc = animal.image && animal.image.startsWith("http")
+            ? animal.image
+            : placeholderImage;
+
         const card = document.createElement("div");
         card.classList.add("posted-animal-card");
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-            <h3>${animal.name}</h3>
-            <p>${animal.location}</p>
+            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
+            <h3>${truncateText(animal.name, 15)}</h3>
+            <p>${truncateText(animal.location, 20)}</p>
             <button class="remove-button" onclick="removePostedAnimal('${animal.name}')">Remove</button>
         `;
         postedAnimalsGrid.appendChild(card);
@@ -116,14 +132,18 @@ function loadPostedAnimalsToIndex() {
 
     // Render each posted animal
     postedAnimals.forEach(animal => {
+        const imageSrc = animal.image && animal.image.startsWith("http")
+            ? animal.image
+            : placeholderImage;
+
         const card = document.createElement("div");
         card.classList.add("profile-card", "dynamic-animal-card");
         card.innerHTML = `
             <a href="profile.html?name=${encodeURIComponent(animal.name)}" class="animal-link">
-                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-                <h2>${animal.name}</h2>
+                <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
+                <h2>${truncateText(animal.name, 15)}</h2>
             </a>
-            <p>${animal.location}</p>
+            <p>${truncateText(animal.location, 20)}</p>
             <button onclick="saveAnimalToStorage(${JSON.stringify(animal)})" class="save-button">Save ${animal.name}</button>
         `;
         profilesGrid.appendChild(card);
