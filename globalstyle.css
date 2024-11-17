@@ -38,66 +38,6 @@ body {
     cursor: pointer;
 }
 
-/* Saved Animals Section */
-.saved-animal-card,
-.posted-animal-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    width: 180px; /* Consistent card width */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* Constrained Image Sizes */
-.saved-animal-image,
-.posted-animal-image {
-    width: 100%;
-    max-width: 150px; /* Limit image width */
-    height: 120px; /* Fixed height for uniformity */
-    object-fit: cover; /* Ensures images fit dimensions without distortion */
-    border-radius: 5px; /* Rounded corners */
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Animal Card Content */
-.saved-animal-card h3,
-.posted-animal-card h3 {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #333;
-    text-align: center;
-    white-space: nowrap; /* Prevent wrapping */
-    overflow: hidden; /* Hide overflowing text */
-    text-overflow: ellipsis; /* Add ellipsis for truncated text */
-}
-
-.saved-animal-card p,
-.posted-animal-card p {
-    margin: 3px 0;
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-}
-
-/* Grid Containers */
-.saved-animals-grid,
-.posted-animals-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    max-width: 800px;
-    margin: auto;
-}
-
 /* Button Styles */
 button,
 .view-profile-button,
@@ -112,6 +52,7 @@ button,
     cursor: pointer;
     margin: 5px 0;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 button:hover,
