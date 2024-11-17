@@ -16,12 +16,13 @@ body {
     border-radius: 8px;
     text-align: center;
     width: 180px; /* Consistent card width */
-    max-height: 300px; /* Prevent cards from being too long */
+    height: auto; /* Flexible height */
+    max-height: 250px; /* Prevent cards from being too long */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space between elements */
-    align-items: center; /* Center content */
+    justify-content: space-between; /* Distribute content evenly */
+    align-items: center; /* Center elements */
     overflow: hidden; /* Prevent content overflow */
 }
 
@@ -33,7 +34,7 @@ body {
     height: 120px; /* Consistent height for images */
     object-fit: cover; /* Ensure images fit without distortion */
     border-radius: 5px; /* Optional rounded corners */
-    margin-bottom: 10px; /* Space below image */
+    margin-bottom: 10px; /* Space below the image */
 }
 
 /* Animal Card Content */
@@ -52,6 +53,7 @@ body {
     margin: 3px 0;
     font-size: 0.9rem;
     color: #555;
+    text-align: center;
 }
 
 /* Grids for Cards */
@@ -163,5 +165,3 @@ button:hover,
 .about-link:visited {
     color: inherit;
 }
-
-
