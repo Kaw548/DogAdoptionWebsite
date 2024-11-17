@@ -60,31 +60,38 @@ function renderSavedAnimals() {
 
     if (!savedAnimalsGrid) return;
 
-    // Clear the container
-    savedAnimalsGrid.innerHTML = "";
+    savedAnimalsGrid.innerHTML = ""; // Clear existing content
 
     if (savedAnimals.length === 0) {
         savedAnimalsGrid.innerHTML = "<p>No animals have been saved yet.</p>";
         return;
     }
 
-    // Render each saved animal
     savedAnimals.forEach(animal => {
-        const imageSrc = animal.image && animal.image.startsWith("http")
+        // Ensure the correct path for GitHub Pages or relative rendering
+        const imageSrc = animal.image.startsWith("http")
             ? animal.image
-            : placeholderImage;
+            : `./${animal.image}`; // Adjust path as needed
+
+        // Debug the image paths
+        console.log("Rendering animal:", {
+            name: animal.name,
+            image: imageSrc,
+            location: animal.location,
+        });
 
         const card = document.createElement("div");
         card.classList.add("saved-animal-card");
         card.innerHTML = `
             <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
-            <h3>${truncateText(animal.name, 15)}</h3>
-            <p>${truncateText(animal.location, 20)}</p>
+            <h3>${animal.name}</h3>
+            <p>${animal.location}</p>
             <button class="remove-button" onclick="removeSavedAnimal('${animal.name}')">Remove</button>
         `;
         savedAnimalsGrid.appendChild(card);
     });
 }
+
 
 // Function to render posted animals on the user profile page
 function renderPostedAnimals() {
