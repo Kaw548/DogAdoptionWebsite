@@ -15,9 +15,8 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 180px; /* Consistent width */
-    max-width: 200px; /* Prevent excessive width */
-    height: 250px; /* Fixed height for uniformity */
+    width: 180px; /* Consistent card width */
+    height: 300px; /* Fixed height for uniformity */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -29,10 +28,10 @@ body {
 /* Constrained Image Sizes */
 .saved-animal-image,
 .posted-animal-image {
-    width: 100%; /* Fit the card width */
+    width: 100%; /* Fit the width of the card */
     max-width: 150px; /* Prevent image from being too wide */
-    height: 120px; /* Fixed height */
-    object-fit: cover; /* Crop and fit image properly */
+    height: 120px; /* Fixed height for consistency */
+    object-fit: contain; /* Scale image to fit without cropping */
     border-radius: 5px; /* Rounded corners */
     margin-bottom: 10px; /* Space below the image */
 }
@@ -44,7 +43,7 @@ body {
     font-size: 1rem;
     color: #333;
     text-align: center;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap; /* Prevent wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for truncated text */
 }
