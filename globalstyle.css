@@ -1,21 +1,60 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f4f4f9;
+}
+
+/* Saved Animals Section */
+.saved-animal-card,
+.posted-animal-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 180px; /* Ensure all cards have consistent width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Constrained Image Sizes */
+.saved-animal-image,
+.posted-animal-image {
+    width: 100%; /* Ensures image width adapts to the card */
+    max-width: 150px; /* Prevents images from becoming too large */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: cover; /* Ensures consistent cropping */
+    border-radius: 5px; /* Optional rounded corners */
+    margin: 0 auto; /* Centers the image */
+    display: block;
+}
+
+/* Animal Card Styles */
+.animal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* Heading Styles */
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: #2c3e50;
 }
 
 /* Header Section Styles */
-#site-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #9dcfb6;  
-    color: white;
     padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
@@ -23,12 +62,6 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    text-align: center;
-}
-
-.header-center h1 {
-    margin: 0;
-    font-size: 1.5rem;
 }
 
 .header-right {
@@ -37,12 +70,7 @@ body {
     gap: 20px;
 }
 
-#site-header a {
-    color: white; /* Ensures links in the header are white */
-    text-decoration: none;
-}
-
-/* Global and Profile Icons Styling */
+/* Styling for Global and Profile Icons */
 .global-icon,
 .profile-icon {
     width: 40px;
@@ -50,142 +78,115 @@ body {
     cursor: pointer;
 }
 
-/* Main Content Section */
-main {
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50;
-}
-
-/* Pet Profiles Section */
-.profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    justify-items: center;
-}
-
-/* Profile Card Styles */
-.profile-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-}
-
-.profile-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.profile-card h2 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    color: #2c3e50;
-}
-
-.profile-card p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 0.9rem;
-}
-
-.save-button {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: white;
-    background-color: #28a745;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.save-button:hover {
-    background-color: #218838;
-}
-
-/* Profile Card Links Styling */
-.profile-card a {
+/* Styling for PawMatch Link */
+.about-link {
     text-decoration: none;
-    color: #2c3e50; /* Neutral color for the profile names */
+    color: inherit;
+    font-size: 24px;
 }
 
-.profile-card a:hover {
-    color: #007bff; /* Optional: Add a slight hover effect for interactivity */
+.about-link:visited {
+    color: inherit;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .profile-card img {
-        height: 150px;
-    }
-    .save-button {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
+/* User Profile Styles */
+.user-profile-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Saved Animals Section */
+#saved-animals {
+    margin-bottom: 30px;
+}
+
 .saved-animals-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    max-width: 800px; /* Constrain grid width */
-    margin: auto; /* Center the grid */
+    justify-content: space-around;
 }
 
-/* Saved Animal Card */
 .saved-animal-card {
-    background-color: white;
+    background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
     text-align: center;
-    width: 180px; /* Define consistent card width */
-    overflow: hidden; /* Ensure content doesn’t overflow */
+    width: 180px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Saved Animal Image */
+/* Constrained Image Sizes for Saved Animals */
 .saved-animal-image {
-    width: 100%; /* Ensure image width matches card width */
-    height: 120px; /* Set a consistent height */
-    object-fit: cover; /* Crop image to fill area without distortion */
-    border-bottom: 1px solid #ddd; 
-    border-radius: 5px 5px 0 0;
-}/* Button Styles */
+    width: 100%;
+    max-width: 150px; /* Set a maximum width for images */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure consistent fit */
+    border-radius: 5px;
+    margin: 0 auto;
+    display: block; /* Center the image */
+}
+
+/* Center Post Animal Section */
+#post-animal {
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 500px;
+    text-align: center;
+}
+
+.post-animal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.post-animal-form input,
+.post-animal-form label {
+    font-size: 14px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.post-animal-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* General Button Styles */
 button,
-.view-profile-button {
-    padding: 10px 15px;
-    font-size: 16px;
+.view-profile-button,
+.submit-button,
+.remove-animal-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #9dcfb6; /* Consistent green for all buttons */
+    color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin: 5px;
-}
-
-button {
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-
-
-
-.view-profile-button {
-    background-color: #852222; /* Blue */
-    color: white;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     text-align: center;
+    cursor: pointer;
+    text-decoration: none; /* For links styled as buttons */
+    margin: 5px 0;
+    text-transform: capitalize; /* Ensure consistent casing */
+}
+
+/* Hover Effect for All Buttons */
+button:hover,
+.view-profile-button:hover,
+.submit-button:hover,
+.remove-animal-button:hover {
+    background-color: #8ab59f; /* Slightly darker green for hover */
 }
