@@ -14,7 +14,9 @@ function saveAnimalToStorage(animal) {
     alert(`${animal.name} has been added to your saved animals!`);
 
     // Re-render saved animals (if on the user profile page)
-    renderSavedAnimals();
+    if (document.querySelector(".saved-animals-grid")) {
+        renderSavedAnimals();
+    }
 }
 
 // Function to save a new animal under "Posted Animals"
@@ -33,13 +35,22 @@ function savePostedAnimal(animal) {
     alert(`${animal.name} has been posted successfully!`);
 
     // Re-render posted animals (if on the user profile page)
-    renderPostedAnimals();
+    if (document.querySelector(".posted-animals-grid")) {
+        renderPostedAnimals();
+    }
+
+    // Update the index page dynamically
+    if (document.querySelector(".profiles-grid")) {
+        loadPostedAnimalsToIndex();
+    }
 }
 
-// Render saved animals on the user profile page
+// Function to render saved animals on the user profile page
 function renderSavedAnimals() {
     const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
     const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
+
+    if (!savedAnimalsGrid) return;
 
     // Clear the container
     savedAnimalsGrid.innerHTML = "";
@@ -63,10 +74,12 @@ function renderSavedAnimals() {
     });
 }
 
-// Render posted animals on the user profile page
+// Function to render posted animals on the user profile page
 function renderPostedAnimals() {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
     const postedAnimalsGrid = document.querySelector(".posted-animals-grid");
+
+    if (!postedAnimalsGrid) return;
 
     // Clear the container
     postedAnimalsGrid.innerHTML = "";
@@ -90,57 +103,12 @@ function renderPostedAnimals() {
     });
 }
 
-// Render posted animals dynamically on the index page
+// Function to render posted animals dynamically on the index page
 function loadPostedAnimalsToIndex() {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
     const profilesGrid = document.querySelector(".profiles-grid");
 
-    // Clear dynamically added animals to prevent duplicates
-    const dynamicCards = profilesGrid.querySelectorAll(".dynamic-animal-card");
-    dynamicCards.forEach(card => card.remove());
-
-    // Render each posted animal
-    postedAnimals.forEach(animal => {
-        const card = document.createElement("div");
-        card.classList.add("profile-card", "dynamic-animal-card");
-        card.innerHTML = `
-            <a href="#" class="animal-link">
-                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-                <h2>${animal.name}</h2>
-            </a>
-            <p>${animal.location}</p>
-            <button onclick="saveAnimalToStorage(${JSON.stringify(animal)})" class="save-button">Save ${animal.name}</button>
-        `;
-        profilesGrid.appendChild(card);
-    });
-}
-
-// Remove a saved animal
-function removeSavedAnimal(name) {
-    let savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
-    savedAnimals = savedAnimals.filter(animal => animal.name !== name);
-    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals));
-    renderSavedAnimals();
-}
-
-// Remove a posted animal
-function removePostedAnimal(name) {
-    let postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
-    postedAnimals = postedAnimals.filter(animal => animal.name !== name);
-    localStorage.setItem("postedAnimals", JSON.stringify(postedAnimals));
-    renderPostedAnimals();
-    loadPostedAnimalsToIndex(); // Update index page dynamically
-}
-
-// Initialize page content on DOM load
-document.addEventListener("DOMContentLoaded", function () {
-    renderSavedAnimals(); // User profile page
-    renderPostedAnimals(); // User profile page
-    loadPostedAnimalsToIndex(); // Index page
-});
-function loadPostedAnimalsToIndex() {
-    const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
-    const profilesGrid = document.querySelector(".profiles-grid");
+    if (!profilesGrid) return;
 
     // Clear dynamically added animals to prevent duplicates
     const dynamicCards = profilesGrid.querySelectorAll(".dynamic-animal-card");
@@ -161,3 +129,27 @@ function loadPostedAnimalsToIndex() {
         profilesGrid.appendChild(card);
     });
 }
+
+// Function to remove a saved animal
+function removeSavedAnimal(name) {
+    let savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
+    savedAnimals = savedAnimals.filter(animal => animal.name !== name);
+    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals));
+    renderSavedAnimals();
+}
+
+// Function to remove a posted animal
+function removePostedAnimal(name) {
+    let postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
+    postedAnimals = postedAnimals.filter(animal => animal.name !== name);
+    localStorage.setItem("postedAnimals", JSON.stringify(postedAnimals));
+    renderPostedAnimals();
+    loadPostedAnimalsToIndex(); // Update index page dynamically
+}
+
+// Initialize page content on DOM load
+document.addEventListener("DOMContentLoaded", function () {
+    renderSavedAnimals(); // Render saved animals on the user profile page
+    renderPostedAnimals(); // Render posted animals on the user profile page
+    loadPostedAnimalsToIndex(); // Render posted animals dynamically on the index page
+});
