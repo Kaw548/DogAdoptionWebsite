@@ -53,7 +53,6 @@ function savePostedAnimal(animal) {
     }
 }
 
-
 function renderSavedAnimals() {
     const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
     const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
@@ -110,6 +109,30 @@ function renderPostedAnimals() {
     });
 }
 
+// Function to load posted animals on index page
+function loadPostedAnimalsToIndex() {
+    const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
+    const profilesGrid = document.querySelector(".profiles-grid");
+
+    if (!profilesGrid) return;
+
+    profilesGrid.innerHTML = ""; // Clear existing profiles
+
+    postedAnimals.forEach(animal => {
+        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
+
+        const card = document.createElement("div");
+        card.classList.add("profile-card");
+        card.innerHTML = `
+            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
+            <h2>${animal.name || "Unnamed Animal"}</h2>
+            <p>${animal.location || "Unknown Location"}</p>
+            <button class="save-button" onclick="saveAnimalToStorage(${JSON.stringify(animal)})">Save ${animal.name}</button>
+        `;
+        profilesGrid.appendChild(card);
+    });
+}
+
 // Function to remove a saved animal
 function removeSavedAnimal(name) {
     let savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
@@ -130,5 +153,5 @@ function removePostedAnimal(name) {
 document.addEventListener("DOMContentLoaded", function () {
     renderSavedAnimals();
     renderPostedAnimals();
+    loadPostedAnimalsToIndex();
 });
-
