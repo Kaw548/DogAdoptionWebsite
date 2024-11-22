@@ -140,11 +140,22 @@ function loadPostedAnimalsToIndex() {
             <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
             <h2>${animal.name || "Unnamed Animal"}</h2>
             <p>${animal.location || "Unknown Location"}</p>
-            <button class="save-button" onclick="saveAnimalToStorage(${JSON.stringify(animal)})">Save ${animal.name}</button>
         `;
+
+        // Create Save button
+        const saveButton = document.createElement("button");
+        saveButton.textContent = `Save ${animal.name}`;
+        saveButton.classList.add("save-button");
+        saveButton.addEventListener("click", () => saveAnimalToStorage(animal)); // Attach event listener
+
+        // Append Save button to the card
+        card.appendChild(saveButton);
+
+        // Append the card to the profiles grid
         profilesGrid.appendChild(card);
     });
 }
+
 
 // Function to remove a saved animal
 function removeSavedAnimal(name) {
