@@ -109,8 +109,18 @@ function renderPostedAnimals() {
     });
 }
 
-// Function to load posted animals on index page
+// Function to load posted animals on index page (static + dynamic)
 function loadPostedAnimalsToIndex() {
+    const staticProfiles = [
+        { name: "Buddy", image: "buddy.jpg", location: "Kent, OH" },
+        { name: "Max", image: "max.jpeg", location: "Canton, OH" },
+        { name: "Bella", image: "bella.jpg", location: "Kent, OH" },
+        { name: "Charlie", image: "charlie.jpg", location: "Akron, OH" },
+        { name: "Teddy", image: "teddy.jpg", location: "Dayton, OH" },
+        { name: "Fiona", image: "fiona.jpg", location: "Kent, OH" },
+        { name: "Pinto", image: "pinto.jpg", location: "Columbus, OH" },
+    ];
+
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
     const profilesGrid = document.querySelector(".profiles-grid");
 
@@ -118,7 +128,10 @@ function loadPostedAnimalsToIndex() {
 
     profilesGrid.innerHTML = ""; // Clear existing profiles
 
-    postedAnimals.forEach(animal => {
+    // Combine static profiles with dynamically posted animals
+    const allProfiles = [...staticProfiles, ...postedAnimals];
+
+    allProfiles.forEach(animal => {
         const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
 
         const card = document.createElement("div");
