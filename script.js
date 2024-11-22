@@ -16,13 +16,14 @@ function saveAnimalToStorage(animal) {
         return;
     }
 
-    // Add to saved animals
+    // Add the new animal to savedAnimals
     savedAnimals.push(animal);
-    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals));
+    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals)); // Save updated list to localStorage
     alert(`${animal.name} has been added to your saved animals!`);
 
-    // Re-render saved animals (if on the user profile page)
-    if (document.querySelector(".saved-animals-grid")) {
+    // Re-render the saved animals if the saved animals grid is available
+    const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
+    if (savedAnimalsGrid) {
         renderSavedAnimals();
     }
 }
@@ -53,6 +54,7 @@ function savePostedAnimal(animal) {
     }
 }
 
+// Function to render saved animals on the user profile page
 function renderSavedAnimals() {
     const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
     const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
@@ -75,12 +77,19 @@ function renderSavedAnimals() {
             <img src="${imageSrc}" alt="${animal.name}" class="saved-animal-image">
             <h3>${animal.name || "Unnamed Animal"}</h3>
             <p>${animal.location || "Unknown Location"}</p>
-            <button class="remove-button" onclick="removeSavedAnimal('${animal.name}')">Remove</button>
         `;
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.classList.add("remove-button");
+        removeButton.addEventListener("click", () => removeSavedAnimal(animal.name));
+
+        card.appendChild(removeButton);
         savedAnimalsGrid.appendChild(card);
     });
 }
 
+// Function to render posted animals on the user profile page
 function renderPostedAnimals() {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
     const postedAnimalsGrid = document.querySelector(".posted-animals-grid");
@@ -103,8 +112,14 @@ function renderPostedAnimals() {
             <img src="${imageSrc}" alt="${animal.name}" class="posted-animal-image">
             <h3>${animal.name || "Unnamed Animal"}</h3>
             <p>${animal.location || "Unknown Location"}</p>
-            <button class="remove-button" onclick="removePostedAnimal('${animal.name}')">Remove</button>
         `;
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.classList.add("remove-button");
+        removeButton.addEventListener("click", () => removePostedAnimal(animal.name));
+
+        card.appendChild(removeButton);
         postedAnimalsGrid.appendChild(card);
     });
 }
@@ -148,14 +163,10 @@ function loadPostedAnimalsToIndex() {
         saveButton.classList.add("save-button");
         saveButton.addEventListener("click", () => saveAnimalToStorage(animal)); // Attach event listener
 
-        // Append Save button to the card
         card.appendChild(saveButton);
-
-        // Append the card to the profiles grid
         profilesGrid.appendChild(card);
     });
 }
-
 
 // Function to remove a saved animal
 function removeSavedAnimal(name) {
