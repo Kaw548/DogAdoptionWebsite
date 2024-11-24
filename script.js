@@ -141,7 +141,10 @@ function loadPostedAnimalsToIndex() {
 
     if (!profilesGrid) return;
 
-    // Append dynamically posted animals without clearing static profiles
+    // Clear the profiles grid to avoid duplicates
+    profilesGrid.innerHTML = "";
+
+    // Append static profiles
     staticProfiles.forEach(profile => {
         const card = document.createElement("div");
         card.classList.add("profile-card");
@@ -157,6 +160,7 @@ function loadPostedAnimalsToIndex() {
         profilesGrid.appendChild(card);
     });
 
+    // Append dynamically posted animals
     postedAnimals.forEach(animal => {
         const card = document.createElement("div");
         card.classList.add("profile-card");
