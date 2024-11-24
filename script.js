@@ -127,13 +127,13 @@ function renderPostedAnimals() {
 // Function to load posted animals on index page (static + dynamic)
 function loadPostedAnimalsToIndex() {
     const staticProfiles = [
-        { name: "Buddy", image: "buddy.jpg", location: "Kent, OH" },
-        { name: "Max", image: "max.jpeg", location: "Canton, OH" },
-        { name: "Bella", image: "bella.jpg", location: "Kent, OH" },
-        { name: "Charlie", image: "charlie.jpg", location: "Akron, OH" },
-        { name: "Teddy", image: "teddy.jpg", location: "Dayton, OH" },
-        { name: "Fiona", image: "fiona.jpg", location: "Kent, OH" },
-        { name: "Pinto", image: "pinto.jpg", location: "Columbus, OH" },
+        { name: "Buddy", image: "buddy.jpg", location: "Kent, OH", link: "buddy.html" },
+        { name: "Max", image: "max.jpeg", location: "Canton, OH", link: "maxProfile.html" },
+        { name: "Bella", image: "bella.jpg", location: "Kent, OH", link: "bella.html" },
+        { name: "Charlie", image: "charlie.jpg", location: "Akron, OH", link: "charlie.html" },
+        { name: "Teddy", image: "teddy.jpg", location: "Dayton, OH", link: "teddy.html" },
+        { name: "Fiona", image: "fiona.jpg", location: "Kent, OH", link: "fiona.html" },
+        { name: "Pinto", image: "pinto.jpg", location: "Columbus, OH", link: "pinto.html" },
     ];
 
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
@@ -141,27 +141,40 @@ function loadPostedAnimalsToIndex() {
 
     if (!profilesGrid) return;
 
-    profilesGrid.innerHTML = ""; // Clear existing profiles
-
-    // Combine static profiles with dynamically posted animals
-    const allProfiles = [...staticProfiles, ...postedAnimals];
-
-    allProfiles.forEach(animal => {
-        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
-
+    // Append dynamically posted animals without clearing static profiles
+    staticProfiles.forEach(profile => {
         const card = document.createElement("div");
         card.classList.add("profile-card");
+
+        card.innerHTML = `
+            <a href="${profile.link}" class="animal-link">
+                <img src="${profile.image}" alt="${profile.name}" class="profile-image">
+                <h2>${profile.name}</h2>
+            </a>
+            <p>${profile.location}</p>
+        `;
+
+        profilesGrid.appendChild(card);
+    });
+
+    postedAnimals.forEach(animal => {
+        const card = document.createElement("div");
+        card.classList.add("profile-card");
+
+        const imageSrc = animal.image.startsWith("data:image/") || animal.image.startsWith("http")
+            ? animal.image
+            : `./${animal.image}`;
+
         card.innerHTML = `
             <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
             <h2>${animal.name || "Unnamed Animal"}</h2>
             <p>${animal.location || "Unknown Location"}</p>
         `;
 
-        // Create Save button
         const saveButton = document.createElement("button");
         saveButton.textContent = `Save ${animal.name}`;
         saveButton.classList.add("save-button");
-        saveButton.addEventListener("click", () => saveAnimalToStorage(animal)); // Attach event listener
+        saveButton.addEventListener("click", () => saveAnimalToStorage(animal));
 
         card.appendChild(saveButton);
         profilesGrid.appendChild(card);
