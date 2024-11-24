@@ -157,6 +157,13 @@ function loadPostedAnimalsToIndex() {
             <p>${profile.location}</p>
         `;
 
+        // Add Save button
+        const saveButton = document.createElement("button");
+        saveButton.textContent = `Save ${profile.name}`;
+        saveButton.classList.add("save-button");
+        saveButton.addEventListener("click", () => saveAnimalToStorage(profile));
+
+        card.appendChild(saveButton);
         profilesGrid.appendChild(card);
     });
 
