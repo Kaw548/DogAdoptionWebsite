@@ -1,33 +1,6 @@
 // Placeholder image for missing or invalid image URLs
 const placeholderImage = "images/default-placeholder.png"; // Ensure this path is correct
 
-// Helper function to truncate text
-function truncateText(text, maxLength) {
-    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
-}
-
-// Function to save a new animal under "Saved Animals"
-function saveAnimalToStorage(animal) {
-    const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
-
-    // Check if the animal is already saved
-    if (savedAnimals.some(existingAnimal => existingAnimal.name === animal.name)) {
-        alert(`${animal.name} is already in your saved list!`);
-        return;
-    }
-
-    // Add the new animal to savedAnimals
-    savedAnimals.push(animal);
-    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals)); // Save updated list to localStorage
-    alert(`${animal.name} has been added to your saved animals!`);
-
-    // Re-render the saved animals if the saved animals grid is available
-    const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
-    if (savedAnimalsGrid) {
-        renderSavedAnimals();
-    }
-}
-
 // Function to save a new animal under "Posted Animals"
 function savePostedAnimal(animal) {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
@@ -52,41 +25,6 @@ function savePostedAnimal(animal) {
     if (document.querySelector(".profiles-grid")) {
         loadPostedAnimalsToIndex();
     }
-}
-
-// Function to render saved animals on the user profile page
-function renderSavedAnimals() {
-    const savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
-    const savedAnimalsGrid = document.querySelector(".saved-animals-grid");
-
-    if (!savedAnimalsGrid) return;
-
-    savedAnimalsGrid.innerHTML = ""; // Clear existing content
-
-    if (savedAnimals.length === 0) {
-        savedAnimalsGrid.innerHTML = "<p>No animals have been saved yet.</p>";
-        return;
-    }
-
-    savedAnimals.forEach(animal => {
-        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
-
-        const card = document.createElement("div");
-        card.classList.add("saved-animal-card");
-        card.innerHTML = `
-            <img src="${imageSrc}" alt="${animal.name}" class="saved-animal-image">
-            <h3>${animal.name || "Unnamed Animal"}</h3>
-            <p>${animal.location || "Unknown Location"}</p>
-        `;
-
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "Remove";
-        removeButton.classList.add("remove-button");
-        removeButton.addEventListener("click", () => removeSavedAnimal(animal.name));
-
-        card.appendChild(removeButton);
-        savedAnimalsGrid.appendChild(card);
-    });
 }
 
 // Function to render posted animals on the user profile page
@@ -157,13 +95,6 @@ function loadPostedAnimalsToIndex() {
             <p>${profile.location}</p>
         `;
 
-        // Add Save button
-        const saveButton = document.createElement("button");
-        saveButton.textContent = `Save ${profile.name}`;
-        saveButton.classList.add("save-button");
-        saveButton.addEventListener("click", () => saveAnimalToStorage(profile));
-
-        card.appendChild(saveButton);
         profilesGrid.appendChild(card);
     });
 
@@ -182,22 +113,8 @@ function loadPostedAnimalsToIndex() {
             <p>${animal.location || "Unknown Location"}</p>
         `;
 
-        const saveButton = document.createElement("button");
-        saveButton.textContent = `Save ${animal.name}`;
-        saveButton.classList.add("save-button");
-        saveButton.addEventListener("click", () => saveAnimalToStorage(animal));
-
-        card.appendChild(saveButton);
         profilesGrid.appendChild(card);
     });
-}
-
-// Function to remove a saved animal
-function removeSavedAnimal(name) {
-    let savedAnimals = JSON.parse(localStorage.getItem("savedAnimals")) || [];
-    savedAnimals = savedAnimals.filter(animal => animal.name !== name);
-    localStorage.setItem("savedAnimals", JSON.stringify(savedAnimals));
-    renderSavedAnimals();
 }
 
 // Function to remove a posted animal
@@ -210,7 +127,6 @@ function removePostedAnimal(name) {
 
 // Initialize page content on DOM load
 document.addEventListener("DOMContentLoaded", function () {
-    renderSavedAnimals();
     renderPostedAnimals();
     loadPostedAnimalsToIndex();
 });
