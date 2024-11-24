@@ -3,67 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawMatch - Pet Profile</title>
-    <!-- Shared Styles -->
+    <title>Profile</title>
     <link rel="stylesheet" href="globalstyle.css">
-    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
-
-    <!-- Load Header -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                })
-                .catch(error => console.error('Error loading header:', error));
-        });
-    </script>
-
-    <!-- Pet Profile Section -->
-    <div class="profile-container">
-        <div class="profile-details" id="profile-details">
-            <!-- Dynamic pet details will be loaded here -->
-        </div>
-        <div class="profile-image" id="profile-image">
-            <!-- Dynamic pet image will be loaded here -->
-        </div>
-    </div>
-
-    <!-- JavaScript to Load Pet Details -->
-    <script>
-        // Extract query parameters
-        const params = new URLSearchParams(window.location.search);
-        const name = params.get('name');
-
-        // Load pet details from localStorage
-        const savedAnimals = JSON.parse(localStorage.getItem('savedAnimals')) || [];
-        const postedAnimals = JSON.parse(localStorage.getItem('postedAnimals')) || [];
-
-        // Search both saved and posted animals
-        const pet = [...savedAnimals, ...postedAnimals].find(animal => animal.name === name);
-
-        if (pet) {
-            // Populate the page with pet details
-            document.getElementById('profile-details').innerHTML = `
-                <h1>${pet.name}</h1>
-                <p><strong>Type:</strong> ${pet.type || 'N/A'}</p>
-                <p><strong>Breed:</strong> ${pet.breed || 'N/A'}</p>
-                <p><strong>Age:</strong> ${pet.age || 'Unknown'} years old</p>
-                <p><strong>Location:</strong> ${pet.location || 'Unknown'}</p>
-                ${pet.distance ? `<p><strong>Distance:</strong> ${pet.distance}</p>` : ''}
-                <a href="adoptionform.html" class="submit-button">Adopt ${pet.name}!</a>
-            `;
-            document.getElementById('profile-image').innerHTML = `
-                <img src="${pet.image}" alt="${pet.name}" class="pet-image">
-            `;
-        } else {
-            document.getElementById('profile-details').innerHTML = '<p>Pet not found!</p>';
-        }
-    </script>
+    <main>
+        <img id="animal-image" alt="Animal Image">
+        <h1 id="animal-name"></h1>
+        <p><strong>Location:</strong> <span id="animal-location"></span></p>
+        <p><strong>Breed:</strong> <span id="animal-breed"></span></p>
+        <p><strong>Age:</strong> <span id="animal-age"></span></p>
+        <p><strong>Type:</strong> <span id="animal-type"></span></p>
+    </main>
+    <script src="profile.js"></script>
 </body>
 </html>
