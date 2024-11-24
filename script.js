@@ -15,18 +15,20 @@ function convertToBase64(file) {
 function savePostedAnimal(animal) {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
 
-    // Check if the animal is already posted
-    if (postedAnimals.some(existingAnimal => existingAnimal.name === animal.name)) {
-        alert(`${animal.name} is already in your posted list!`);
-        return;
-    }
+    // Generate a unique ID for the profile
+    const uniqueID = `animal-${Date.now()}`;
+
+    // Add the unique ID to the animal data
+    const animalWithID = { ...animal, id: uniqueID };
 
     // Add to posted animals
-    postedAnimals.push(animal);
+    postedAnimals.push(animalWithID);
     localStorage.setItem("postedAnimals", JSON.stringify(postedAnimals));
+    localStorage.setItem(uniqueID, JSON.stringify(animalWithID)); // Save individual animal profile
+
     alert(`${animal.name} has been posted successfully!`);
 
-    // Re-render posted animals (if on the user profile page)
+    // Re-render posted animals on the user profile page
     if (document.querySelector(".posted-animals-grid")) {
         renderPostedAnimals();
     }
@@ -55,8 +57,10 @@ function renderPostedAnimals() {
         const card = document.createElement("div");
         card.classList.add("posted-animal-card");
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="posted-animal-image">
-            <h3>${animal.name || "Unnamed Animal"}</h3>
+            <a href="profile.html?id=${animal.id}" class="animal-link">
+                <img src="${animal.image}" alt="${animal.name}" class="posted-animal-image">
+                <h3>${animal.name || "Unnamed Animal"}</h3>
+            </a>
             <p>${animal.location || "Unknown Location"}</p>
         `;
 
@@ -73,13 +77,9 @@ function renderPostedAnimals() {
 // Function to load posted animals on index page (static + dynamic)
 function loadPostedAnimalsToIndex() {
     const staticProfiles = [
-        { name: "Buddy", image: "buddy.jpg", location: "Kent, OH", link: "buddy.html" },
-        { name: "Max", image: "max.jpeg", location: "Canton, OH", link: "maxProfile.html" },
-        { name: "Bella", image: "bella.jpg", location: "Kent, OH", link: "bella.html" },
-        { name: "Charlie", image: "charlie.jpg", location: "Akron, OH", link: "charlie.html" },
-        { name: "Teddy", image: "teddy.jpg", location: "Dayton, OH", link: "teddy.html" },
-        { name: "Fiona", image: "fiona.jpg", location: "Kent, OH", link: "fiona.html" },
-        { name: "Pinto", image: "pinto.jpg", location: "Columbus, OH", link: "pinto.html" },
+        { name: "Buddy", image: "buddy.jpg", location: "Kent, OH", link: "profile.html?id=static-buddy" },
+        { name: "Max", image: "max.jpeg", location: "Canton, OH", link: "profile.html?id=static-max" },
+        { name: "Bella", image: "bella.jpg", location: "Kent, OH", link: "profile.html?id=static-bella" },
     ];
 
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
@@ -111,8 +111,10 @@ function loadPostedAnimalsToIndex() {
         card.classList.add("profile-card");
 
         card.innerHTML = `
-            <img src="${animal.image}" alt="${animal.name}" class="profile-image">
-            <h2>${animal.name || "Unnamed Animal"}</h2>
+            <a href="profile.html?id=${animal.id}" class="animal-link">
+                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
+                <h2>${animal.name || "Unnamed Animal"}</h2>
+            </a>
             <p>${animal.location || "Unknown Location"}</p>
         `;
 
