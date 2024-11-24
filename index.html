@@ -31,7 +31,7 @@
     <!-- Pet Profiles Section -->
     <main class="pet-profiles-container">
         <div class="profiles-grid">
-            <!-- Buddy's Profile -->
+            <!-- Static Profiles -->
             <div class="profile-card">
                 <a href="buddy.html" class="animal-link">
                     <img src="buddy.jpg" alt="Buddy" class="profile-image">
@@ -41,7 +41,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Buddy', image: 'buddy.jpg', location: 'Kent, OH' })" class="save-button">Save Buddy</button>
             </div>
 
-            <!-- Max's Profile -->
             <div class="profile-card">
                 <a href="maxProfile.html" class="animal-link">
                     <img src="max.jpeg" alt="Max" class="profile-image">
@@ -51,7 +50,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Max', image: 'max.jpeg', location: 'Canton, OH' })" class="save-button">Save Max</button>
             </div>
 
-            <!-- Bella's Profile -->
             <div class="profile-card">
                 <a href="bella.html" class="animal-link">
                     <img src="bella.jpg" alt="Bella" class="profile-image">
@@ -61,7 +59,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Bella', image: 'bella.jpg', location: 'Kent, OH' })" class="save-button">Save Bella</button>
             </div>
 
-            <!-- Charlie's Profile -->
             <div class="profile-card">
                 <a href="charlie.html" class="animal-link">
                     <img src="charlie.jpg" alt="Charlie" class="profile-image">
@@ -71,7 +68,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Charlie', image: 'charlie.jpg', location: 'Akron, OH' })" class="save-button">Save Charlie</button>
             </div>
 
-            <!-- Teddy's Profile -->
             <div class="profile-card">
                 <a href="teddy.html" class="animal-link">
                     <img src="teddy.jpg" alt="Teddy" class="profile-image">
@@ -81,7 +77,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Teddy', image: 'teddy.jpg', location: 'Dayton, OH' })" class="save-button">Save Teddy</button>
             </div>
 
-            <!-- Fiona's Profile -->
             <div class="profile-card">
                 <a href="fiona.html" class="animal-link">
                     <img src="fiona.jpg" alt="Fiona" class="profile-image">
@@ -91,7 +86,6 @@
                 <button onclick="saveAnimalToStorage({ name: 'Fiona', image: 'fiona.jpg', location: 'Kent, OH' })" class="save-button">Save Fiona</button>
             </div>
 
-            <!-- Pinto's Profile -->
             <div class="profile-card">
                 <a href="pinto.html" class="animal-link">
                     <img src="pinto.jpg" alt="Pinto" class="profile-image">
@@ -103,19 +97,4 @@
         </div>
     </main>
 </body>
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Load header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header:', error));
-
-        // Load dynamically posted animals
-        loadPostedAnimalsToIndex();
-    });
-</script>
-
 </html>
