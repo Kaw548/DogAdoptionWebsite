@@ -1,6 +1,16 @@
 // Placeholder image for missing or invalid image URLs
 const placeholderImage = "images/default-placeholder.png"; // Ensure this path is correct
 
+// Helper Function to Convert Image to Base64
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+    });
+}
+
 // Function to save a new animal under "Posted Animals"
 function savePostedAnimal(animal) {
     const postedAnimals = JSON.parse(localStorage.getItem("postedAnimals")) || [];
@@ -42,12 +52,10 @@ function renderPostedAnimals() {
     }
 
     postedAnimals.forEach(animal => {
-        const imageSrc = animal.image.startsWith("http") ? animal.image : `./${animal.image}`;
-
         const card = document.createElement("div");
         card.classList.add("posted-animal-card");
         card.innerHTML = `
-            <img src="${imageSrc}" alt="${animal.name}" class="posted-animal-image">
+            <img src="${animal.image}" alt="${animal.name}" class="posted-animal-image">
             <h3>${animal.name || "Unnamed Animal"}</h3>
             <p>${animal.location || "Unknown Location"}</p>
         `;
@@ -79,8 +87,7 @@ function loadPostedAnimalsToIndex() {
 
     if (!profilesGrid) return;
 
-    // Clear the profiles grid to avoid duplicates
-    profilesGrid.innerHTML = "";
+    profilesGrid.innerHTML = ""; // Clear the profiles grid to avoid duplicates
 
     // Append static profiles
     staticProfiles.forEach(profile => {
@@ -103,12 +110,8 @@ function loadPostedAnimalsToIndex() {
         const card = document.createElement("div");
         card.classList.add("profile-card");
 
-        const imageSrc = animal.image.startsWith("data:image/") || animal.image.startsWith("http")
-            ? animal.image
-            : `./${animal.image}`;
-
         card.innerHTML = `
-            <img src="${imageSrc}" alt="${animal.name}" class="profile-image">
+            <img src="${animal.image}" alt="${animal.name}" class="profile-image">
             <h2>${animal.name || "Unnamed Animal"}</h2>
             <p>${animal.location || "Unknown Location"}</p>
         `;
@@ -125,8 +128,47 @@ function removePostedAnimal(name) {
     renderPostedAnimals();
 }
 
-// Initialize page content on DOM load
-document.addEventListener("DOMContentLoaded", function () {
+// Event Listener for Form Submission
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.post-animal-form');
+
+    if (form) {
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('animal-name').value;
+            const type = document.getElementById('animal-type').value;
+            const breed = document.getElementById('animal-breed').value;
+            const age = document.getElementById('animal-age').value;
+            const location = document.getElementById('animal-location').value;
+            const photoInput = document.getElementById('animal-photo');
+
+            if (!photoInput.files.length) {
+                alert('Please upload an image for the animal.');
+                return;
+            }
+
+            const photo = photoInput.files[0];
+            const imageBase64 = await convertToBase64(photo);
+
+            const newAnimal = {
+                name,
+                type,
+                breed,
+                age,
+                location,
+                image: imageBase64, // Save the Base64 string
+            };
+
+            // Save the new animal
+            savePostedAnimal(newAnimal);
+
+            // Clear the form
+            form.reset();
+        });
+    }
+
+    // Initial rendering of posted animals
     renderPostedAnimals();
     loadPostedAnimalsToIndex();
 });
