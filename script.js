@@ -75,12 +75,11 @@ function renderPostedAnimals() {
     });
 }
 
-// Function to load posted animals on index page (static + dynamic)
 function loadPostedAnimalsToIndex() {
     const staticProfiles = [
         { name: "Buddy", image: "buddy.jpg", location: "Kent, OH", link: "buddy.html" },
         { name: "Max", image: "max.jpeg", location: "Canton, OH", link: "maxProfile.html" },
-        { name: "Bella", image: "bella.jpg", location: "Kent, OH", link: "bella.html" },
+        { name: "Bella", image: "bella.jpg", location: "kent, OH", link: "bella.html" },
         { name: "Charlie", image: "charlie.jpg", location: "Akron, OH", link: "charlie.html" },
         { name: "Teddy", image: "teddy.jpg", location: "Dayton, OH", link: "teddy.html" },
         { name: "Fiona", image: "fiona.jpg", location: "Kent, OH", link: "fiona.html" },
@@ -109,6 +108,27 @@ function loadPostedAnimalsToIndex() {
 
         profilesGrid.appendChild(card);
     });
+
+    // Append dynamically posted animals
+    postedAnimals.forEach(animal => {
+        const card = document.createElement("div");
+        card.classList.add("profile-card");
+
+        // Use unique ID as the query parameter for the profile link
+        const uniqueLink = `profile.html?id=${encodeURIComponent(animal.name)}`;
+
+        card.innerHTML = `
+            <a href="${uniqueLink}" class="animal-link">
+                <img src="${animal.image}" alt="${animal.name}" class="profile-image">
+                <h2>${animal.name || "Unnamed Animal"}</h2>
+            </a>
+            <p>${animal.location || "Unknown Location"}</p>
+        `;
+
+        profilesGrid.appendChild(card);
+    });
+}
+
 
     // Append dynamically posted animals
     postedAnimals.forEach(animal => {
