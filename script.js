@@ -57,7 +57,12 @@ function renderPostedAnimals() {
         card.innerHTML = `
             <img src="${animal.image}" alt="${animal.name}" class="posted-animal-image">
             <h3>${animal.name || "Unnamed Animal"}</h3>
-            <p>${animal.location || "Unknown Location"}</p>
+            <p><strong>About:</strong> ${animal.about || "No details available"}</p>
+            <p><strong>Personality:</strong> ${animal.personality || "No details available"}</p>
+            <p><strong>Breed:</strong> ${animal.breed || "Unknown Breed"}</p>
+            <p><strong>Age:</strong> ${animal.age || "Unknown Age"}</p>
+            <p><strong>Health:</strong> ${animal.health || "No health information available"}</p>
+            <p><strong>Location:</strong> ${animal.location || "Unknown Location"}</p>
         `;
 
         const removeButton = document.createElement("button");
@@ -141,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const breed = document.getElementById('animal-breed').value;
             const age = document.getElementById('animal-age').value;
             const location = document.getElementById('animal-location').value;
+            const about = document.getElementById('animal-about').value;
+            const personality = document.getElementById('animal-personality').value;
+            const health = document.getElementById('animal-health').value;
             const photoInput = document.getElementById('animal-photo');
 
             if (!photoInput.files.length) {
@@ -157,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 breed,
                 age,
                 location,
+                about,
+                personality,
+                health,
                 image: imageBase64, // Save the Base64 string
             };
 
